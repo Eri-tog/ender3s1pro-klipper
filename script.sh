@@ -9,12 +9,6 @@ github_username=$(grep 'github_username=' "$parent_path"/.env | sed 's/^.*=//')
 github_repository=$(grep 'github_repository=' "$parent_path"/.env | sed 's/^.*=//')
 backup_folder=$(grep 'backup_folder=' "$parent_path"/.env | sed 's/^.*=//')
 
-# Display info 
-echo "$github_token"
-echo "$github_username"
-echo "$github_repository"
-echo "$backup_folder"
-
 # Change directory to parent path
 cd "$parent_path" || exit
 
