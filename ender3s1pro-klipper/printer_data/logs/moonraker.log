@@ -1001,3 +1001,81 @@ Properties:
 2023-10-21 15:03:42,381 [job_state.py:_handle_started()] - Job state initialized: standby
 2023-10-21 15:03:42,638 [klippy_connection.py:_check_ready()] - Klippy ready
 2023-10-21 15:03:43,386 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:04:40,524 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:04:41,786 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:04:44,112 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:04:44,113 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:04:44,363 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:04:44,621 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:04:45,368 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:09:17,841 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:09:19,103 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:09:21,180 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:09:21,181 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:09:21,431 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:09:21,690 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:09:22,187 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:13:45,581 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:13:46,842 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:13:48,917 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:13:48,919 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:13:49,169 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:13:49,427 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:13:49,924 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:13:59,706 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2023-10-21 15:13:59,707 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2023-10-21 15:14:09,714 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.195
+2023-10-21 15:14:09,715 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.195
+2023-10-21 15:24:51,070 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:24:52,331 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:24:54,405 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:24:54,407 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:24:54,656 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:24:54,913 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:24:55,410 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:26:53,644 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:26:54,904 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:26:56,979 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:26:56,981 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:26:57,231 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:26:57,489 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:26:57,983 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:29:00,727 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2023-10-21 15:29:00,730 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2023-10-21 15:29:10,734 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.195
+2023-10-21 15:29:10,738 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.195
+2023-10-21 15:31:08,438 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:31:09,701 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:31:11,774 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:31:11,777 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:31:12,025 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:31:12,284 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:31:12,779 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:37:20,366 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:37:21,627 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:37:23,732 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:37:23,733 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:37:23,983 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:37:24,242 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:37:24,739 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:40:01,408 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:40:02,671 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:40:04,751 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:40:04,752 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:40:05,002 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:40:05,260 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:40:05,754 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:45:27,750 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:45:29,012 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:45:31,088 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:45:31,090 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:45:31,340 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:45:31,597 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:45:32,095 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:47:08,855 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:47:10,117 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:47:12,192 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:47:12,194 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:47:12,443 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:47:12,702 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:47:13,199 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
