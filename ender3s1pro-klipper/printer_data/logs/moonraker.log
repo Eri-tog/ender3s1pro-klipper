@@ -1079,3 +1079,10 @@ Properties:
 2023-10-21 15:47:12,443 [job_state.py:_handle_started()] - Job state initialized: standby
 2023-10-21 15:47:12,702 [klippy_connection.py:_check_ready()] - Klippy ready
 2023-10-21 15:47:13,199 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-21 15:51:15,544 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-21 15:51:16,805 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-21 15:51:18,878 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-21 15:51:18,879 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-21 15:51:19,128 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-21 15:51:19,387 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-21 15:51:19,883 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
