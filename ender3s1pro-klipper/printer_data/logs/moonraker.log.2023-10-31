@@ -1,0 +1,317 @@
+-------------------- Log Start | Tue Oct 31 14:35:33 2023 --------------------
+data_path: /home/Pi/printer_data
+is_default_data_path: False
+config_file: /home/Pi/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: True
+instance_uuid: ed66581bdb9442a8ba66cabe74f1bd44
+unix_socket_path: /home/Pi/printer_data/comms/moonraker.sock
+software_version: v0.8.0-186-g2641fc5
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/Pi/printer_data/logs/moonraker.log
+python_version: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+msgspec_enabled: False
+uvloop_enabled: False
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+max_upload_size = 1024
+klippy_uds_address = ~/printer_data/comms/klippy.sock
+
+[file_manager]
+enable_object_processing = False
+
+[authorization]
+cors_domains = 
+	https://my.mainsail.xyz
+	http://my.mainsail.xyz
+	http://*.local
+	http://*.lan
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+
+[octoprint_compat]
+
+[history]
+
+[announcements]
+subscriptions = 
+	mainsail
+
+[update_manager]
+refresh_interval = 168
+enable_auto_refresh = True
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+managed_services = crowsnest
+install_script = tools/pkglist.sh
+
+[update_manager sonar]
+type = git_repo
+path = ~/sonar
+origin = https://github.com/mainsail-crew/sonar.git
+primary_branch = main
+managed_services = sonar
+install_script = tools/install.sh
+
+[update_manager klipper-macros]
+type = git_repo
+origin = https://github.com/jschuh/klipper-macros.git
+path = ~/printer_data/config/klipper-macros
+primary_branch = main
+is_system_service = False
+managed_services = klipper
+
+#################################################################
+All Configuration Files:
+/home/Pi/printer_data/config/moonraker.conf
+#################################################################
+Unsafe Shutdown Count: 7
+
+System Info:
+
+***python***
+  version: (3, 9, 2, 'final', 0)
+  version_string: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: aarch64
+  cpu_desc: 
+  serial_number: 100000008ec46bbe
+  hardware_desc: BCM2835
+  model: Raspberry Pi 4 Model B Rev 1.5
+  total_memory: 1713732
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 03
+  manufacturer: Sandisk
+  oem_id: 5344
+  product_name: SC32G
+  product_revision: 8.0
+  serial_number: 59bac505
+  manufacturer_date: 7/2022
+  capacity: 29.7 GiB
+  total_bytes: 31914983424
+
+***distribution***
+  name: Raspbian GNU/Linux 11 (bullseye)
+  id: raspbian
+  version: 11
+  version_parts: {'major': '11', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: bullseye
+  release_info: {'name': 'MainsailOS', 'version_id': '1.2.1', 'codename': 'bullseye', 'id': 'mainsailos'}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['system.slice', 'network-online.target', 'sysinit.target']
+**After=['klipper.service', 'systemd-journald.socket', 'network-online.target', 'sysinit.target', 'system.slice', 'basic.target']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/Pi/printer_data/systemd/moonraker.env
+**ExecStart=/home/Pi/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=Pi
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['-.mount', 'sysinit.target', 'system.slice']
+**After=['systemd-journald.socket', '-.mount', 'network-online.target', 'sysinit.target', 'system.slice', 'basic.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/Pi/printer_data/systemd/klipper.env
+**ExecStart=/home/Pi/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/Pi/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=Pi
+Git Repo moonraker: Warnings detected:
+  Repo has untracked source files: ['moonraker/components/timelapse.py']
+Git Repo klipper: Warnings detected:
+  Repo has untracked source files: ['klippy/extras/gcode_shell_command.py']
+Git Repo mainsail-config: No warnings detected
+Git Repo sonar: No warnings detected
+Git Repo klipper-macros: No warnings detected
+Klipper Version: v0.11.0-303-g67499853-dirty
+2023-10-31 10:35:33,338 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.112
+2023-10-31 10:35:33,341 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 7.27ms
+2023-10-31 10:35:33,342 [websockets.py:open()] - Websocket Opened: ID: 3904074008, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
+2023-10-31 10:35:33,355 [websockets.py:_handle_identify()] - Websocket 3904074008 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2023-10-31 10:35:57,735 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 5.43ms
+2023-10-31 10:35:57,736 [websockets.py:open()] - Websocket Opened: ID: 4143290496, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
+2023-10-31 10:35:57,751 [websockets.py:_handle_identify()] - Websocket 4143290496 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2023-10-31 10:36:23,842 [websockets.py:write_to_socket()] - Websocket closed while writing: 3904074008
+2023-10-31 10:36:28,345 [websockets.py:on_close()] - Websocket Closed: ID: 3904074008 Close Code: None, Close Reason: None, Pong Time Elapsed: 44.98
+2023-10-31 10:39:31,863 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 4.57ms
+2023-10-31 10:39:31,864 [websockets.py:open()] - Websocket Opened: ID: 3904077440, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
+2023-10-31 10:39:31,879 [websockets.py:_handle_identify()] - Websocket 3904077440 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2023-10-31 10:39:36,317 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
+2023-10-31 10:39:37,576 [klippy_connection.py:_do_connect()] - Klippy Connection Established
+2023-10-31 10:39:41,997 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
+2023-10-31 10:39:41,998 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
+2023-10-31 10:39:42,248 [job_state.py:_handle_started()] - Job state initialized: standby
+2023-10-31 10:39:42,560 [klippy_connection.py:_check_ready()] - Klippy ready
+2023-10-31 10:39:43,514 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
+2023-10-31 10:46:37,887 [app.py:prepare()] - Upload Request Received from 192.168.0.112
+2023-10-31 10:46:39,255 [app.py:post()] - Processing Uploaded File: /CE3S1PRO_sander-2.gcode
+2023-10-31 10:46:39,433 [shell_command.py:pipe_data_received()] - INFO:metadata:Object Processing is disabled
+
+2023-10-31 10:46:39,482 [shell_command.py:_check_proc_success()] - Command (/home/Pi/moonraker-env/bin/python /home/Pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/Pi/printer_data/gcodes -f "CE3S1PRO_sander-2.gcode") successfully finished
+2023-10-31 10:46:39,492 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.112) [_TRUSTED_USER_] 1605.91ms
+2023-10-31 10:46:39,682 [job_state.py:_status_update()] - Job Started: CE3S1PRO_sander-2.gcode
+2023-10-31 11:46:58,694 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.112
+2023-10-31 13:00:01,788 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.198
+2023-10-31 13:00:01,792 [app.py:log_request()] - 101 GET /websocket (192.168.0.198) [_TRUSTED_USER_] 8.26ms
+2023-10-31 13:00:01,793 [websockets.py:open()] - Websocket Opened: ID: 4143290664, Proxied: True, User Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Mobile/15E148 Safari/604.1, Host Name: 192.168.0.195
+2023-10-31 13:00:01,829 [websockets.py:_handle_identify()] - Websocket 4143290664 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2023-10-31 13:02:59,969 [websockets.py:on_close()] - Websocket Closed: ID: 4143290664 Close Code: None, Close Reason: None, Pong Time Elapsed: 8.15
+2023-10-31 14:01:58,722 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.198
+2023-10-31 17:27:30,916 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.112
+2023-10-31 17:27:30,945 [app.py:prepare()] - Upload Request Received from 192.168.0.112
+2023-10-31 17:27:31,889 [app.py:post()] - Processing Uploaded File: /CE3S1PRO_sander-2.gcode
+2023-10-31 17:27:32,080 [shell_command.py:pipe_data_received()] - INFO:metadata:Object Processing is disabled
+
+2023-10-31 17:27:32,130 [shell_command.py:_check_proc_success()] - Command (/home/Pi/moonraker-env/bin/python /home/Pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/Pi/printer_data/gcodes -f "CE3S1PRO_sander-2.gcode") successfully finished
+2023-10-31 17:27:32,139 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.112) [_TRUSTED_USER_] 1195.57ms
+2023-10-31 17:27:32,343 [job_state.py:_status_update()] - Job Started: CE3S1PRO_sander-2.gcode
+2023-10-31 18:18:05,642 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.167
+2023-10-31 18:18:05,646 [app.py:log_request()] - 101 GET /websocket (192.168.0.167) [_TRUSTED_USER_] 7.34ms
+2023-10-31 18:18:05,647 [websockets.py:open()] - Websocket Opened: ID: 3883834192, Proxied: True, User Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Mobile/15E148 Safari/604.1, Host Name: 192.168.0.195
+2023-10-31 18:18:06,611 [websockets.py:_handle_identify()] - Websocket 3883834192 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2023-10-31 18:18:22,226 [websockets.py:on_close()] - Websocket Closed: ID: 3883834192 Close Code: None, Close Reason: None, Pong Time Elapsed: 6.35
+2023-10-31 18:31:58,779 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.112
+2023-10-31 19:21:58,788 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.167
+2023-10-31 20:34:13,524 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.112
+2023-10-31 20:34:13,553 [app.py:prepare()] - Upload Request Received from 192.168.0.112
+2023-10-31 20:34:13,818 [app.py:post()] - Processing Uploaded File: /cylinder - smooth movement.gcode
+2023-10-31 20:34:14,033 [shell_command.py:pipe_data_received()] - INFO:metadata:Object Processing is disabled
+
+2023-10-31 20:34:14,082 [shell_command.py:_check_proc_success()] - Command (/home/Pi/moonraker-env/bin/python /home/Pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/Pi/printer_data/gcodes -f "cylinder - smooth movement.gcode") successfully finished
+2023-10-31 20:34:14,093 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.112) [_TRUSTED_USER_] 540.77ms
+2023-10-31 20:34:14,225 [job_state.py:_status_update()] - Job Started: cylinder - smooth movement.gcode
+2023-10-31 20:40:45,442 [app.py:prepare()] - Upload Request Received from 192.168.0.112
+2023-10-31 20:40:45,651 [app.py:post()] - Processing Uploaded File: /without fluid motion.gcode
+2023-10-31 20:40:45,832 [shell_command.py:pipe_data_received()] - INFO:metadata:Object Processing is disabled
+
+2023-10-31 20:40:45,881 [shell_command.py:_check_proc_success()] - Command (/home/Pi/moonraker-env/bin/python /home/Pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/Pi/printer_data/gcodes -f "without fluid motion.gcode") successfully finished
+2023-10-31 20:40:45,885 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.112) [_TRUSTED_USER_] 445.00ms
+2023-10-31 21:13:33,191 [app.py:prepare()] - Upload Request Received from 192.168.0.112
+2023-10-31 21:13:35,033 [app.py:post()] - Processing Uploaded File: /right keeb.gcode
+2023-10-31 21:13:35,213 [shell_command.py:pipe_data_received()] - INFO:metadata:Object Processing is disabled
+
+2023-10-31 21:13:35,263 [shell_command.py:_check_proc_success()] - Command (/home/Pi/moonraker-env/bin/python /home/Pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/Pi/printer_data/gcodes -f "right keeb.gcode") successfully finished
+2023-10-31 21:13:35,267 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.112) [_TRUSTED_USER_] 2079.10ms
+2023-10-31 21:14:28,168 [klippy_connection.py:_process_status_update()] - Klippy has shutdown
+2023-10-31 21:14:28,177 [proc_stats.py:_handle_shutdown()] - 
+Moonraker System Usage Statistics:
+System Time: 1698801238.836694, Usage: 2.35%, Memory: 28792 kB
+System Time: 1698801239.834031, Usage: 2.4%, Memory: 28792 kB
+System Time: 1698801240.834452, Usage: 2.19%, Memory: 28792 kB
+System Time: 1698801241.836514, Usage: 4.37%, Memory: 28792 kB
+System Time: 1698801242.837043, Usage: 2.65%, Memory: 28792 kB
+System Time: 1698801243.838500, Usage: 2.2%, Memory: 28792 kB
+System Time: 1698801244.839816, Usage: 2.14%, Memory: 28792 kB
+System Time: 1698801245.840828, Usage: 2.23%, Memory: 28792 kB
+System Time: 1698801246.841476, Usage: 2.14%, Memory: 28792 kB
+System Time: 1698801247.842277, Usage: 2.52%, Memory: 28792 kB
+System Time: 1698801248.843336, Usage: 2.16%, Memory: 28792 kB
+System Time: 1698801249.844174, Usage: 2.21%, Memory: 28792 kB
+System Time: 1698801250.845689, Usage: 2.19%, Memory: 28792 kB
+System Time: 1698801251.848473, Usage: 4.34%, Memory: 28792 kB
+System Time: 1698801252.849106, Usage: 2.66%, Memory: 28792 kB
+System Time: 1698801253.850276, Usage: 2.3%, Memory: 28792 kB
+System Time: 1698801254.851266, Usage: 2.22%, Memory: 28792 kB
+System Time: 1698801255.852427, Usage: 2.19%, Memory: 28792 kB
+System Time: 1698801256.853001, Usage: 2.19%, Memory: 28792 kB
+System Time: 1698801257.854800, Usage: 2.51%, Memory: 28792 kB
+System Time: 1698801258.856317, Usage: 2.14%, Memory: 28792 kB
+System Time: 1698801259.857671, Usage: 2.26%, Memory: 28792 kB
+System Time: 1698801260.859886, Usage: 2.18%, Memory: 28792 kB
+System Time: 1698801261.863361, Usage: 4.45%, Memory: 28792 kB
+System Time: 1698801262.863187, Usage: 2.61%, Memory: 28792 kB
+System Time: 1698801263.861580, Usage: 2.16%, Memory: 28792 kB
+System Time: 1698801264.864440, Usage: 1.73%, Memory: 28792 kB
+System Time: 1698801265.865725, Usage: 2.2%, Memory: 28792 kB
+System Time: 1698801266.866958, Usage: 2.17%, Memory: 28792 kB
+System Time: 1698801267.868229, Usage: 2.42%, Memory: 28792 kB
+CPU Temperature: 49.173
+2023-10-31 21:14:28,180 [proc_stats.py:_handle_shutdown()] - Throttled Flags: 
+2023-10-31 22:16:58,828 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.112
+2023-10-31 22:38:47,841 [websockets.py:write_to_socket()] - Websocket closed while writing: 4143290496
+2023-10-31 22:38:48,517 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.112
+2023-10-31 22:38:48,520 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 6.35ms
+2023-10-31 22:38:48,520 [websockets.py:open()] - Websocket Opened: ID: 3904167240, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
+2023-10-31 22:38:48,541 [websockets.py:_handle_identify()] - Websocket 3904167240 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2023-10-31 22:38:48,655 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 2.17ms
+2023-10-31 22:38:48,655 [websockets.py:open()] - Websocket Opened: ID: 3904164000, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
+2023-10-31 22:38:48,671 [websockets.py:_handle_identify()] - Websocket 3904164000 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2023-10-31 22:38:51,887 [websockets.py:write_to_socket()] - Websocket closed while writing: 3904077440
+2023-10-31 22:38:52,740 [websockets.py:on_close()] - Websocket Closed: ID: 4143290496 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
+2023-10-31 22:38:56,869 [websockets.py:on_close()] - Websocket Closed: ID: 3904077440 Close Code: None, Close Reason: None, Pong Time Elapsed: 44.94
+2023-10-31 22:47:08,529 [websockets.py:write_to_socket()] - Websocket closed while writing: 3904167240
+2023-10-31 22:47:09,527 [websockets.py:write_to_socket()] - Websocket closed while writing: 3904164000
+2023-10-31 22:47:13,525 [websockets.py:on_close()] - Websocket Closed: ID: 3904167240 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
+2023-10-31 22:47:13,658 [websockets.py:on_close()] - Websocket Closed: ID: 3904164000 Close Code: None, Close Reason: None, Pong Time Elapsed: 44.99
+2023-10-31 23:41:58,849 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.112
