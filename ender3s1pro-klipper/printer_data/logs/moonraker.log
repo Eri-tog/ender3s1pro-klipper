@@ -1,4 +1,4 @@
--------------------- Log Start | Wed Nov  1 12:16:49 2023 --------------------
+-------------------- Log Start | Tue Nov  7 05:24:32 2023 --------------------
 data_path: /home/Pi/printer_data
 is_default_data_path: False
 config_file: /home/Pi/printer_data/config/moonraker.conf
@@ -99,7 +99,7 @@ managed_services = klipper
 All Configuration Files:
 /home/Pi/printer_data/config/moonraker.conf
 #################################################################
-Unsafe Shutdown Count: 7
+Unsafe Shutdown Count: 8
 
 System Info:
 
@@ -163,8 +163,8 @@ unit_name: moonraker.service
 is_default: True
 manager: systemd
 Properties:
-**Requires=['system.slice', 'network-online.target', 'sysinit.target']
-**After=['klipper.service', 'systemd-journald.socket', 'network-online.target', 'sysinit.target', 'system.slice', 'basic.target']
+**Requires=['network-online.target', 'system.slice', 'sysinit.target']
+**After=['klipper.service', 'system.slice', 'network-online.target', 'systemd-journald.socket', 'basic.target', 'sysinit.target']
 **SupplementaryGroups=['moonraker-admin']
 **EnvironmentFiles=/home/Pi/printer_data/systemd/moonraker.env
 **ExecStart=/home/Pi/moonraker-env/bin/python $MOONRAKER_ARGS
@@ -178,8 +178,8 @@ unit_name: klipper.service
 is_default: True
 manager: systemd
 Properties:
-**Requires=['-.mount', 'sysinit.target', 'system.slice']
-**After=['systemd-journald.socket', '-.mount', 'network-online.target', 'sysinit.target', 'system.slice', 'basic.target']
+**Requires=['system.slice', 'sysinit.target', '-.mount']
+**After=['-.mount', 'system.slice', 'network-online.target', 'systemd-journald.socket', 'basic.target', 'sysinit.target']
 **SupplementaryGroups=[]
 **EnvironmentFiles=/home/Pi/printer_data/systemd/klipper.env
 **ExecStart=/home/Pi/klippy-env/bin/python $KLIPPER_ARGS
@@ -195,74 +195,46 @@ Git Repo mainsail-config: No warnings detected
 Git Repo sonar: No warnings detected
 Git Repo klipper-macros: No warnings detected
 Klipper Version: v0.11.0-303-g67499853-dirty
-2023-11-01 08:16:49,139 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.112
-2023-11-01 08:16:49,142 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 7.10ms
-2023-11-01 08:16:49,143 [websockets.py:open()] - Websocket Opened: ID: 3904167432, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
-2023-11-01 08:16:49,192 [websockets.py:_handle_identify()] - Websocket 3904167432 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
-2023-11-01 08:16:49,214 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 3.84ms
-2023-11-01 08:16:49,214 [websockets.py:open()] - Websocket Opened: ID: 3904163976, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
-2023-11-01 08:16:49,294 [websockets.py:_handle_identify()] - Websocket 3904163976 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
-2023-11-01 08:17:26,204 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 5.45ms
-2023-11-01 08:17:26,205 [websockets.py:open()] - Websocket Opened: ID: 3904164264, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
-2023-11-01 08:17:26,215 [websockets.py:_handle_identify()] - Websocket 3904164264 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
-2023-11-01 08:17:26,234 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 5.70ms
-2023-11-01 08:17:26,235 [websockets.py:open()] - Websocket Opened: ID: 3883870120, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
-2023-11-01 08:17:26,251 [websockets.py:_handle_identify()] - Websocket 3883870120 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
-2023-11-01 08:17:35,371 [websockets.py:on_close()] - Websocket Closed: ID: 3883870120 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 9.14
-2023-11-01 08:17:35,755 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 4.57ms
-2023-11-01 08:17:35,756 [websockets.py:open()] - Websocket Opened: ID: 3904166760, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
-2023-11-01 08:17:35,763 [websockets.py:_handle_identify()] - Websocket 3904166760 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
-2023-11-01 08:17:47,140 [klippy_connection.py:_on_connection_closed()] - Klippy Connection Removed
-2023-11-01 08:17:48,406 [klippy_connection.py:_do_connect()] - Klippy Connection Established
-2023-11-01 08:17:52,813 [klippy_connection.py:_request_initial_subscriptions()] - Webhooks Subscribed
-2023-11-01 08:17:52,815 [klippy_connection.py:_request_initial_subscriptions()] - GCode Output Subscribed
-2023-11-01 08:17:53,064 [job_state.py:_handle_started()] - Job state initialized: standby
-2023-11-01 08:17:53,338 [klippy_connection.py:_check_ready()] - Klippy ready
-2023-11-01 08:17:54,330 [data_store.py:_init_sensors()] - Configuring available sensors: ['heater_bed', 'extruder']
-2023-11-01 08:17:59,577 [websockets.py:write_to_socket()] - Websocket closed while writing: 3904167432
-2023-11-01 08:17:59,577 [websockets.py:write_to_socket()] - Websocket closed while writing: 3904163976
-2023-11-01 08:18:04,148 [websockets.py:on_close()] - Websocket Closed: ID: 3904167432 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
-2023-11-01 08:18:04,219 [websockets.py:on_close()] - Websocket Closed: ID: 3904163976 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
-2023-11-01 08:43:47,325 [job_state.py:_status_update()] - Job Started: right keeb.gcode
-2023-11-01 08:44:24,190 [app.py:prepare()] - Upload Request Received from 192.168.0.112
-2023-11-01 08:44:26,444 [app.py:post()] - Processing Uploaded File: /left keeb.gcode
-2023-11-01 08:44:26,625 [shell_command.py:pipe_data_received()] - INFO:metadata:Object Processing is disabled
-
-2023-11-01 08:44:26,674 [shell_command.py:_check_proc_success()] - Command (/home/Pi/moonraker-env/bin/python /home/Pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/Pi/printer_data/gcodes -f "left keeb.gcode") successfully finished
-2023-11-01 08:44:26,679 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.112) [_TRUSTED_USER_] 2490.59ms
-2023-11-01 09:46:58,972 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.112
-2023-11-01 13:04:35,327 [klippy_connection.py:_process_status_update()] - Klippy has shutdown
-2023-11-01 13:04:35,336 [proc_stats.py:_handle_shutdown()] - 
+2023-11-07 00:24:32,005 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.198
+2023-11-07 09:06:04,544 [klippy_connection.py:_process_status_update()] - Klippy has shutdown
+2023-11-07 09:06:04,551 [proc_stats.py:_handle_shutdown()] - 
 Moonraker System Usage Statistics:
-System Time: 1698858246.028836, Usage: 4.66%, Memory: 28796 kB
-System Time: 1698858247.028668, Usage: 2.59%, Memory: 28796 kB
-System Time: 1698858248.030229, Usage: 2.28%, Memory: 28796 kB
-System Time: 1698858249.030987, Usage: 2.18%, Memory: 28796 kB
-System Time: 1698858250.031754, Usage: 2.25%, Memory: 28796 kB
-System Time: 1698858251.032805, Usage: 2.22%, Memory: 28796 kB
-System Time: 1698858252.034178, Usage: 2.24%, Memory: 28796 kB
-System Time: 1698858253.034784, Usage: 2.21%, Memory: 28796 kB
-System Time: 1698858254.035284, Usage: 2.26%, Memory: 28796 kB
-System Time: 1698858255.035806, Usage: 2.22%, Memory: 28796 kB
-System Time: 1698858256.037296, Usage: 4.75%, Memory: 28796 kB
-System Time: 1698858257.037323, Usage: 2.57%, Memory: 28796 kB
-System Time: 1698858258.038062, Usage: 2.29%, Memory: 28796 kB
-System Time: 1698858259.039289, Usage: 2.24%, Memory: 28796 kB
-System Time: 1698858260.039930, Usage: 2.26%, Memory: 28796 kB
-System Time: 1698858261.040945, Usage: 2.19%, Memory: 28796 kB
-System Time: 1698858262.043549, Usage: 2.21%, Memory: 28796 kB
-System Time: 1698858263.046143, Usage: 2.22%, Memory: 28796 kB
-System Time: 1698858264.048907, Usage: 2.26%, Memory: 28796 kB
-System Time: 1698858265.050699, Usage: 2.15%, Memory: 28796 kB
-System Time: 1698858266.054817, Usage: 4.68%, Memory: 28796 kB
-System Time: 1698858267.055355, Usage: 2.71%, Memory: 28796 kB
-System Time: 1698858268.053080, Usage: 2.39%, Memory: 28796 kB
-System Time: 1698858269.053661, Usage: 2.16%, Memory: 28796 kB
-System Time: 1698858270.055563, Usage: 2.25%, Memory: 28796 kB
-System Time: 1698858271.056310, Usage: 2.22%, Memory: 28796 kB
-System Time: 1698858272.057087, Usage: 2.23%, Memory: 28796 kB
-System Time: 1698858273.058234, Usage: 2.18%, Memory: 28796 kB
-System Time: 1698858274.059394, Usage: 2.22%, Memory: 28796 kB
-System Time: 1698858275.060283, Usage: 2.19%, Memory: 28796 kB
-CPU Temperature: 51.121
-2023-11-01 13:04:35,338 [proc_stats.py:_handle_shutdown()] - Throttled Flags: 
+System Time: 1699365934.703393, Usage: 3.4%, Memory: 30144 kB
+System Time: 1699365935.704535, Usage: 1.42%, Memory: 30144 kB
+System Time: 1699365936.704441, Usage: 1.38%, Memory: 30144 kB
+System Time: 1699365937.705915, Usage: 1.33%, Memory: 30144 kB
+System Time: 1699365938.707809, Usage: 1.34%, Memory: 30144 kB
+System Time: 1699365939.709717, Usage: 1.27%, Memory: 30144 kB
+System Time: 1699365940.711626, Usage: 1.33%, Memory: 30144 kB
+System Time: 1699365941.712714, Usage: 1.26%, Memory: 30144 kB
+System Time: 1699365942.713019, Usage: 1.36%, Memory: 30144 kB
+System Time: 1699365943.713700, Usage: 1.32%, Memory: 30144 kB
+System Time: 1699365944.716027, Usage: 3.33%, Memory: 30144 kB
+System Time: 1699365945.716046, Usage: 1.43%, Memory: 30144 kB
+System Time: 1699365946.717133, Usage: 1.3%, Memory: 30144 kB
+System Time: 1699365947.717890, Usage: 1.27%, Memory: 30144 kB
+System Time: 1699365948.719367, Usage: 1.31%, Memory: 30144 kB
+System Time: 1699365949.719857, Usage: 1.34%, Memory: 30144 kB
+System Time: 1699365950.720778, Usage: 1.31%, Memory: 30144 kB
+System Time: 1699365951.721805, Usage: 1.3%, Memory: 30144 kB
+System Time: 1699365952.723263, Usage: 1.38%, Memory: 30144 kB
+System Time: 1699365953.723813, Usage: 1.3%, Memory: 30144 kB
+System Time: 1699365954.726931, Usage: 3.4%, Memory: 30144 kB
+System Time: 1699365955.728900, Usage: 1.44%, Memory: 30144 kB
+System Time: 1699365956.730037, Usage: 1.38%, Memory: 30144 kB
+System Time: 1699365957.731395, Usage: 1.3%, Memory: 30144 kB
+System Time: 1699365958.732209, Usage: 1.31%, Memory: 30144 kB
+System Time: 1699365959.732626, Usage: 1.33%, Memory: 30144 kB
+System Time: 1699365960.734091, Usage: 1.2%, Memory: 30144 kB
+System Time: 1699365961.734622, Usage: 1.29%, Memory: 30144 kB
+System Time: 1699365962.735514, Usage: 1.28%, Memory: 30144 kB
+System Time: 1699365963.737068, Usage: 1.24%, Memory: 30144 kB
+CPU Temperature: 53.069
+2023-11-07 09:06:04,554 [proc_stats.py:_handle_shutdown()] - Throttled Flags: 
+2023-11-07 12:40:21,492 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.112
+2023-11-07 12:40:21,496 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 8.08ms
+2023-11-07 12:40:21,497 [websockets.py:open()] - Websocket Opened: ID: 4137661272, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0, Host Name: 192.168.0.195
+2023-11-07 12:40:21,510 [websockets.py:_handle_identify()] - Websocket 4137661272 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2023-11-07 13:44:32,191 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.112
+2023-11-07 23:34:52,123 [websockets.py:write_to_socket()] - Websocket closed while writing: 4137661272
+2023-11-07 23:34:56,501 [websockets.py:on_close()] - Websocket Closed: ID: 4137661272 Close Code: None, Close Reason: None, Pong Time Elapsed: 45.00
