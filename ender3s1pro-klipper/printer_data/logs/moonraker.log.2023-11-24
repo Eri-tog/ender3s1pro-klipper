@@ -1,0 +1,1242 @@
+-------------------- Log Start | Fri Nov 24 05:12:33 2023 --------------------
+data_path: /home/Pi/printer_data
+is_default_data_path: False
+config_file: /home/Pi/printer_data/config/moonraker.conf
+startup_warnings: []
+verbose: False
+debug: False
+asyncio_debug: False
+is_backup_config: False
+is_python_package: True
+instance_uuid: ed66581bdb9442a8ba66cabe74f1bd44
+unix_socket_path: /home/Pi/printer_data/comms/moonraker.sock
+software_version: v0.8.0-186-g2641fc5
+git_branch: master
+git_remote: origin
+git_repo_url: https://github.com/Arksine/moonraker.git
+modified_files: []
+unofficial_components: []
+log_file: /home/Pi/printer_data/logs/moonraker.log
+python_version: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+msgspec_enabled: False
+uvloop_enabled: False
+
+#################### Moonraker Configuration ####################
+
+[server]
+host = 0.0.0.0
+port = 7125
+max_upload_size = 1024
+klippy_uds_address = ~/printer_data/comms/klippy.sock
+
+[file_manager]
+enable_object_processing = False
+
+[authorization]
+cors_domains = 
+	https://my.mainsail.xyz
+	http://my.mainsail.xyz
+	http://*.local
+	http://*.lan
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+
+[octoprint_compat]
+
+[history]
+
+[announcements]
+subscriptions = 
+	mainsail
+
+[update_manager]
+refresh_interval = 168
+enable_auto_refresh = True
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager crowsnest]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+managed_services = crowsnest
+install_script = tools/pkglist.sh
+
+[update_manager sonar]
+type = git_repo
+path = ~/sonar
+origin = https://github.com/mainsail-crew/sonar.git
+primary_branch = main
+managed_services = sonar
+install_script = tools/install.sh
+
+[update_manager klipper-macros]
+type = git_repo
+origin = https://github.com/jschuh/klipper-macros.git
+path = ~/printer_data/config/klipper-macros
+primary_branch = main
+is_system_service = False
+managed_services = klipper
+
+#################################################################
+All Configuration Files:
+/home/Pi/printer_data/config/moonraker.conf
+#################################################################
+Unsafe Shutdown Count: 9
+
+System Info:
+
+***python***
+  version: (3, 9, 2, 'final', 0)
+  version_string: 3.9.2 (default, Mar 12 2021, 04:06:34)  [GCC 10.2.1 20210110]
+
+***cpu_info***
+  cpu_count: 4
+  bits: 32bit
+  processor: aarch64
+  cpu_desc: 
+  serial_number: 100000008ec46bbe
+  hardware_desc: BCM2835
+  model: Raspberry Pi 4 Model B Rev 1.5
+  total_memory: 1713732
+  memory_units: kB
+
+***sd_info***
+  manufacturer_id: 03
+  manufacturer: Sandisk
+  oem_id: 5344
+  product_name: SC32G
+  product_revision: 8.0
+  serial_number: 59bac505
+  manufacturer_date: 7/2022
+  capacity: 29.7 GiB
+  total_bytes: 31914983424
+
+***distribution***
+  name: Raspbian GNU/Linux 11 (bullseye)
+  id: raspbian
+  version: 11
+  version_parts: {'major': '11', 'minor': '', 'build_number': ''}
+  like: debian
+  codename: bullseye
+  release_info: {'name': 'MainsailOS', 'version_id': '1.2.1', 'codename': 'bullseye', 'id': 'mainsailos'}
+
+***virtualization***
+  virt_type: none
+  virt_identifier: none
+
+***network***
+
+***canbus***
+
+***Allowed Services***
+  klipper_mcu
+  webcamd
+  MoonCord
+  KlipperScreen
+  moonraker-telegram-bot
+  moonraker-obico
+  sonar
+  crowsnest
+  octoeverywhere
+  ratos-configurator
+
+Systemd unit moonraker.service:
+unit_name: moonraker.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice', 'network-online.target']
+**After=['systemd-journald.socket', 'sysinit.target', 'basic.target', 'system.slice', 'klipper.service', 'network-online.target']
+**SupplementaryGroups=['moonraker-admin']
+**EnvironmentFiles=/home/Pi/printer_data/systemd/moonraker.env
+**ExecStart=/home/Pi/moonraker-env/bin/python $MOONRAKER_ARGS
+**WorkingDirectory=
+**FragmentPath=/etc/systemd/system/moonraker.service
+**Description=API Server for Klipper SV1
+**User=Pi
+
+Systemd unit klipper.service:
+unit_name: klipper.service
+is_default: True
+manager: systemd
+Properties:
+**Requires=['sysinit.target', 'system.slice', '-.mount']
+**After=['systemd-journald.socket', '-.mount', 'sysinit.target', 'basic.target', 'system.slice', 'network-online.target']
+**SupplementaryGroups=[]
+**EnvironmentFiles=/home/Pi/printer_data/systemd/klipper.env
+**ExecStart=/home/Pi/klippy-env/bin/python $KLIPPER_ARGS
+**WorkingDirectory=/home/Pi/klipper
+**FragmentPath=/etc/systemd/system/klipper.service
+**Description=Klipper 3D Printer Firmware SV1
+**User=Pi
+Git Repo moonraker: Warnings detected:
+  Repo has untracked source files: ['moonraker/components/timelapse.py']
+Git Repo klipper: Warnings detected:
+  Repo has untracked source files: ['klippy/extras/gcode_shell_command.py']
+Git Repo mainsail-config: No warnings detected
+Git Repo sonar: No warnings detected
+Git Repo klipper-macros: No warnings detected
+Klipper Version: v0.11.0-303-g67499853-dirty
+2023-11-24 00:12:33,479 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d778>, <Task finished name='Task-19384121' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 00:12:39,563 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d7c0>, <Task finished name='Task-19384221' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 00:42:33,465 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d388>, <Task finished name='Task-19412857' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 02:12:33,328 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe8f66388>, <Task finished name='Task-19499075' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 02:12:39,491 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe8f55220>, <Task finished name='Task-19499175' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 02:12:45,592 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d8e0>, <Task finished name='Task-19499276' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 02:42:33,493 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726dcd0>, <Task finished name='Task-19527827' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 03:12:33,536 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe8f55220>, <Task finished name='Task-19556562' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 03:42:33,321 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe8f66388>, <Task finished name='Task-19585297' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 07:12:33,530 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe725b5c8>, <Task finished name='Task-19786467' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 07:42:33,329 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d0b8>, <Task finished name='Task-19815201' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 08:12:33,321 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe725b5c8>, <Task finished name='Task-19843945' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 08:12:39,529 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d4f0>, <Task finished name='Task-19844050' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 08:12:45,659 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d5c8>, <Task finished name='Task-19844146' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 08:42:33,328 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d730>, <Task finished name='Task-19872688' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 08:42:39,575 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726db68>, <Task finished name='Task-19872795' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 10:42:33,460 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe725b5c8>, <Task finished name='Task-19987643' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 10:42:39,583 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d658>, <Task finished name='Task-19987745' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 11:12:33,435 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d268>, <Task finished name='Task-20016386' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 11:12:39,547 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d538>, <Task finished name='Task-20016483' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 11:42:33,610 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726dd60>, <Task finished name='Task-20045128' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 12:12:33,333 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe725b5c8>, <Task finished name='Task-20073862' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 12:42:33,333 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d730>, <Task finished name='Task-20102603' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 12:42:39,547 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726de38>, <Task finished name='Task-20102708' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 12:42:45,650 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d6a0>, <Task finished name='Task-20102804' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 13:12:33,571 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d538>, <Task finished name='Task-20131352' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 14:12:33,813 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe8f55220>, <Task finished name='Task-20188827' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 14:42:33,359 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d070>, <Task finished name='Task-20217562' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 14:42:39,554 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d4f0>, <Task finished name='Task-20217664' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 15:12:33,508 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d6a0>, <Task finished name='Task-20246306' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 15:12:39,622 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d5c8>, <Task finished name='Task-20246408' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 16:12:33,679 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe8f55220>, <Task finished name='Task-20303791' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 16:42:33,359 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d778>, <Task finished name='Task-20332521' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 17:12:33,373 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726da90>, <Task finished name='Task-20361262' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 17:12:39,553 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d730>, <Task finished name='Task-20361368' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 17:12:45,651 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d8e0>, <Task finished name='Task-20361464' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 17:42:33,527 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe725b5c8>, <Task finished name='Task-20390011' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 18:12:33,514 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726dd18>, <Task finished name='Task-20418750' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 18:12:39,618 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d190>, <Task finished name='Task-20418847' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 19:12:33,579 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726da90>, <Task finished name='Task-20476233' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 19:42:33,577 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe725b5c8>, <Task finished name='Task-20504973' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 20:12:33,551 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726da00>, <Task finished name='Task-20533710' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 20:42:33,469 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d6a0>, <Task finished name='Task-20562453' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 20:42:39,569 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d778>, <Task finished name='Task-20562553' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 21:12:33,519 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d6e8>, <Task finished name='Task-20591194' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 21:12:39,657 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe8f55220>, <Task finished name='Task-20591299' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 21:42:33,522 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726dd18>, <Task finished name='Task-20619935' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 21:42:39,644 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d970>, <Task finished name='Task-20620038' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 22:42:33,521 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d100>, <Task finished name='Task-20677416' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 22:42:39,619 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d808>, <Task finished name='Task-20677513' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 23:12:33,447 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe725b5c8>, <Task finished name='Task-20706155' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 23:12:39,557 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d220>, <Task finished name='Task-20706260' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 23:42:33,399 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d898>, <Task finished name='Task-20734898' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 23:42:39,640 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d190>, <Task finished name='Task-20735001' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2023-11-24 23:42:45,738 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe726d4f0>, <Task finished name='Task-20735099' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
