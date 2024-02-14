@@ -1,4 +1,4 @@
--------------------- Log Start | Wed Dec 27 06:39:57 2023 --------------------
+-------------------- Log Start | Wed Feb 14 07:15:25 2024 --------------------
 data_path: /home/Pi/printer_data
 is_default_data_path: False
 config_file: /home/Pi/printer_data/config/moonraker.conf
@@ -99,7 +99,7 @@ managed_services = klipper
 All Configuration Files:
 /home/Pi/printer_data/config/moonraker.conf
 #################################################################
-Unsafe Shutdown Count: 10
+Unsafe Shutdown Count: 11
 
 System Info:
 
@@ -163,8 +163,8 @@ unit_name: moonraker.service
 is_default: True
 manager: systemd
 Properties:
-**Requires=['system.slice', 'network-online.target', 'sysinit.target']
-**After=['systemd-journald.socket', 'network-online.target', 'basic.target', 'system.slice', 'klipper.service', 'sysinit.target']
+**Requires=['system.slice', 'sysinit.target', 'network-online.target']
+**After=['basic.target', 'systemd-journald.socket', 'klipper.service', 'sysinit.target', 'system.slice', 'network-online.target']
 **SupplementaryGroups=['moonraker-admin']
 **EnvironmentFiles=/home/Pi/printer_data/systemd/moonraker.env
 **ExecStart=/home/Pi/moonraker-env/bin/python $MOONRAKER_ARGS
@@ -178,8 +178,8 @@ unit_name: klipper.service
 is_default: True
 manager: systemd
 Properties:
-**Requires=['-.mount', 'system.slice', 'sysinit.target']
-**After=['systemd-journald.socket', 'network-online.target', 'basic.target', 'system.slice', 'sysinit.target', '-.mount']
+**Requires=['system.slice', 'sysinit.target', '-.mount']
+**After=['basic.target', 'systemd-journald.socket', '-.mount', 'sysinit.target', 'system.slice', 'network-online.target']
 **SupplementaryGroups=[]
 **EnvironmentFiles=/home/Pi/printer_data/systemd/klipper.env
 **ExecStart=/home/Pi/klippy-env/bin/python $KLIPPER_ARGS
@@ -195,207 +195,149 @@ Git Repo mainsail-config: No warnings detected
 Git Repo sonar: No warnings detected
 Git Repo klipper-macros: No warnings detected
 Klipper Version: v0.11.0-303-g67499853-dirty
-2023-12-27 01:39:57,798 [base_deploy.py:log_info()] - PackageKit: Detected 15 package updates:
-bluez-firmware
-curl
-firmware-atheros
-firmware-brcm80211
-firmware-libertas
-firmware-misc-nonfree
-firmware-realtek
-libcurl3-gnutls
-libcurl4
-libnghttp2-14
-libtiff5
-openssh-client
-openssh-server
-openssh-sftp-server
-ssh
-2023-12-27 01:39:57,818 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker status --porcelain -b) successfully finished
-2023-12-27 01:39:57,839 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker branch --list --no-color) successfully finished
-2023-12-27 01:39:57,859 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker remote get-url origin) successfully finished
-2023-12-27 01:39:58,520 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker fetch origin --prune --progress) successfully finished
-2023-12-27 01:39:58,535 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker merge-base --is-ancestor HEAD origin/master) successfully finished
-2023-12-27 01:39:58,545 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker rev-parse HEAD) successfully finished
-2023-12-27 01:39:58,564 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker describe --always --tags --long --dirty --abbrev=8) successfully finished
-2023-12-27 01:39:58,575 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker rev-parse origin/master) successfully finished
-2023-12-27 01:39:58,595 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker describe origin/master --always --tags --long --abbrev=8) successfully finished
-2023-12-27 01:39:58,610 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker rev-list HEAD..cc5dea716b97d6bb378834f8c1c0581a524a7cba --count) successfully finished
-2023-12-27 01:39:58,626 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker log 2641fc54d6932445e54d3c2f72a74e46aaf290cf..origin/master --format="sha:%H%x1Dauthor:%an%x1Ddate:%ct%x1Dsubject:%s%x1Dmessage:%b%x1E" --max-count=100) successfully finished
-2023-12-27 01:39:58,678 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/moonraker for-each-ref --count=100 --sort='-creatordate' --contains=HEAD --merged=origin/master --format='%(if)%(*objecttype)%(then)%(*objecttype) %(*objectname)%(else)%(objecttype) %(objectname)%(end) %(refname)' 'refs/tags') successfully finished
-2023-12-27 01:39:58,679 [git_deploy.py:log_repo_info()] - Git Repo moonraker Detected:
-Owner: Arksine
-Repository Name: moonraker
-Path: /home/Pi/moonraker
-Remote: origin
-Branch: master
-Remote URL: https://github.com/Arksine/moonraker.git
-Recovery URL: https://github.com/Arksine/moonraker.git
-Current Commit SHA: 2641fc54d6932445e54d3c2f72a74e46aaf290cf
-Upstream Commit SHA: cc5dea716b97d6bb378834f8c1c0581a524a7cba
-Current Version: v0.8.0-186-g2641fc54
-Upstream Version: v0.8.0-231-gcc5dea71
-Rollback Commit: 2641fc54d6932445e54d3c2f72a74e46aaf290cf
-Rollback Branch: master
-Rollback Version: v0.8.0-186-g2641fc5
-Is Dirty: False
-Is Detached: False
-Is Shallow: False
-Commits Behind Count: 45
-Diverged: False
-Repo Warnings:
-  Repo has untracked source files: ['moonraker/components/timelapse.py']
-2023-12-27 01:39:58,679 [base_deploy.py:log_info()] - Git Repo moonraker: Channel: dev
-2023-12-27 01:39:58,679 [base_deploy.py:log_info()] - Git Repo moonraker: Validity check for git repo passed
-2023-12-27 01:39:58,721 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper status --porcelain -b) successfully finished
-2023-12-27 01:39:58,743 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper branch --list --no-color) successfully finished
-2023-12-27 01:39:58,763 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper remote get-url origin) successfully finished
-2023-12-27 01:39:59,514 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper fetch origin --prune --progress) successfully finished
-2023-12-27 01:39:59,528 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper merge-base --is-ancestor HEAD origin/master) successfully finished
-2023-12-27 01:39:59,539 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper rev-parse HEAD) successfully finished
-2023-12-27 01:39:59,637 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper describe --always --tags --long --dirty --abbrev=8) successfully finished
-2023-12-27 01:39:59,648 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper rev-parse origin/master) successfully finished
-2023-12-27 01:39:59,738 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper describe origin/master --always --tags --long --abbrev=8) successfully finished
-2023-12-27 01:39:59,752 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper rev-list HEAD..6f686ddee3c65037bfcdfc93a3d8bf42a488e725 --count) successfully finished
-2023-12-27 01:39:59,768 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper log 6749985302fe002a9cb5672dab9badb11e4e3c36..origin/master --format="sha:%H%x1Dauthor:%an%x1Ddate:%ct%x1Dsubject:%s%x1Dmessage:%b%x1E" --max-count=100) successfully finished
-2023-12-27 01:39:59,880 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/klipper for-each-ref --count=100 --sort='-creatordate' --contains=HEAD --merged=origin/master --format='%(if)%(*objecttype)%(then)%(*objecttype) %(*objectname)%(else)%(objecttype) %(objectname)%(end) %(refname)' 'refs/tags') successfully finished
-2023-12-27 01:39:59,882 [git_deploy.py:log_repo_info()] - Git Repo klipper Detected:
-Owner: Klipper3d
-Repository Name: klipper
-Path: /home/Pi/klipper
-Remote: origin
-Branch: master
-Remote URL: https://github.com/Klipper3d/klipper.git
-Recovery URL: https://github.com/Klipper3d/klipper.git
-Current Commit SHA: 6749985302fe002a9cb5672dab9badb11e4e3c36
-Upstream Commit SHA: 6f686ddee3c65037bfcdfc93a3d8bf42a488e725
-Current Version: v0.11.0-303-g67499853
-Upstream Version: v0.12.0-54-g6f686dde
-Rollback Commit: 6749985302fe002a9cb5672dab9badb11e4e3c36
-Rollback Branch: master
-Rollback Version: v0.11.0-303-g67499853
-Is Dirty: False
-Is Detached: False
-Is Shallow: False
-Commits Behind Count: 64
-Diverged: False
-Repo Warnings:
-  Repo has untracked source files: ['klippy/extras/gcode_shell_command.py']
-2023-12-27 01:39:59,882 [base_deploy.py:log_info()] - Git Repo klipper: Channel: dev
-2023-12-27 01:39:59,882 [base_deploy.py:log_info()] - Git Repo klipper: Validity check for git repo passed
-2023-12-27 01:40:00,122 [web_deploy.py:_log_client_info()] - Web Client mainsail Detected:
-Repo: mainsail-crew/mainsail
-Channel: stable
-Path: /home/Pi/mainsail
-Local Version: v2.8.0
-Remote Version: v2.9.0
-Valid: True
-Fallback Client Detected: False
-Pre-release: False
-Download Url: https://github.com/mainsail-crew/mainsail/releases/download/v2.9.0/mainsail.zip
-Download Size: 2065802
-Content Type: application/zip
-Rollback Version: v2.8.0
-Rollback Repo: mainsail-crew/mainsail
-2023-12-27 01:40:00,137 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config status --porcelain -b) successfully finished
-2023-12-27 01:40:00,159 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config branch --list --no-color) successfully finished
-2023-12-27 01:40:00,180 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config remote get-url origin) successfully finished
-2023-12-27 01:40:00,763 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config fetch origin --prune --progress) successfully finished
-2023-12-27 01:40:00,776 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config merge-base --is-ancestor HEAD origin/master) successfully finished
-2023-12-27 01:40:00,787 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config rev-parse HEAD) successfully finished
-2023-12-27 01:40:00,800 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config describe --always --tags --long --dirty --abbrev=8) successfully finished
-2023-12-27 01:40:00,811 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config rev-parse origin/master) successfully finished
-2023-12-27 01:40:00,824 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config describe origin/master --always --tags --long --abbrev=8) successfully finished
-2023-12-27 01:40:00,836 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config rev-list HEAD..76a9999986b03abb3aed272dc0a818f13a18ea7e --count) successfully finished
-2023-12-27 01:40:00,850 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config log c64d3af97a277ffdf607a398cc838991bcda069b..origin/master --format="sha:%H%x1Dauthor:%an%x1Ddate:%ct%x1Dsubject:%s%x1Dmessage:%b%x1E" --max-count=100) successfully finished
-2023-12-27 01:40:00,864 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/mainsail-config for-each-ref --count=100 --sort='-creatordate' --contains=HEAD --merged=origin/master --format='%(if)%(*objecttype)%(then)%(*objecttype) %(*objectname)%(else)%(objecttype) %(objectname)%(end) %(refname)' 'refs/tags') successfully finished
-2023-12-27 01:40:00,865 [git_deploy.py:log_repo_info()] - Git Repo mainsail-config Detected:
-Owner: mainsail-crew
-Repository Name: mainsail-config
-Path: /home/Pi/mainsail-config
-Remote: origin
-Branch: master
-Remote URL: https://github.com/mainsail-crew/mainsail-config.git
-Recovery URL: https://github.com/mainsail-crew/mainsail-config.git
-Current Commit SHA: c64d3af97a277ffdf607a398cc838991bcda069b
-Upstream Commit SHA: 76a9999986b03abb3aed272dc0a818f13a18ea7e
-Current Version: v1.0.0-16-gc64d3af9
-Upstream Version: v1.1.0-1-g76a99999
-Rollback Commit: c64d3af97a277ffdf607a398cc838991bcda069b
-Rollback Branch: master
-Rollback Version: v1.0.0-16-gc64d3af
-Is Dirty: False
-Is Detached: False
-Is Shallow: False
-Commits Behind Count: 2
-Diverged: False
-2023-12-27 01:40:00,865 [base_deploy.py:log_info()] - Git Repo mainsail-config: Channel: dev
-2023-12-27 01:40:00,865 [base_deploy.py:log_info()] - Git Repo mainsail-config: Validity check for git repo passed
-2023-12-27 01:40:00,880 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar status --porcelain -b) successfully finished
-2023-12-27 01:40:00,901 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar branch --list --no-color) successfully finished
-2023-12-27 01:40:00,923 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar remote get-url origin) successfully finished
-2023-12-27 01:40:01,332 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar fetch origin --prune --progress) successfully finished
-2023-12-27 01:40:01,344 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar merge-base --is-ancestor HEAD origin/main) successfully finished
-2023-12-27 01:40:01,355 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar rev-parse HEAD) successfully finished
-2023-12-27 01:40:01,368 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar describe --always --tags --long --dirty --abbrev=8) successfully finished
-2023-12-27 01:40:01,379 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar rev-parse origin/main) successfully finished
-2023-12-27 01:40:01,395 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar describe origin/main --always --tags --long --abbrev=8) successfully finished
-2023-12-27 01:40:01,407 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar rev-list HEAD..eacc498a52f79292063b6f9b0e0c191c34c5dc09 --count) successfully finished
-2023-12-27 01:40:01,421 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar log 7962a1225ad88fa2a642ae2b378637491b4b2710..origin/main --format="sha:%H%x1Dauthor:%an%x1Ddate:%ct%x1Dsubject:%s%x1Dmessage:%b%x1E" --max-count=100) successfully finished
-2023-12-27 01:40:01,436 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/sonar for-each-ref --count=100 --sort='-creatordate' --contains=HEAD --merged=origin/main --format='%(if)%(*objecttype)%(then)%(*objecttype) %(*objectname)%(else)%(objecttype) %(objectname)%(end) %(refname)' 'refs/tags') successfully finished
-2023-12-27 01:40:01,437 [git_deploy.py:log_repo_info()] - Git Repo sonar Detected:
-Owner: mainsail-crew
-Repository Name: sonar
-Path: /home/Pi/sonar
-Remote: origin
-Branch: main
-Remote URL: https://github.com/mainsail-crew/sonar.git
-Recovery URL: https://github.com/mainsail-crew/sonar.git
-Current Commit SHA: 7962a1225ad88fa2a642ae2b378637491b4b2710
-Upstream Commit SHA: eacc498a52f79292063b6f9b0e0c191c34c5dc09
-Current Version: v0.1.2-0-g7962a122
-Upstream Version: v0.1.3-1-geacc498a
-Rollback Commit: 7962a1225ad88fa2a642ae2b378637491b4b2710
-Rollback Branch: main
-Rollback Version: v0.1.2-0-g7962a12
-Is Dirty: False
-Is Detached: False
-Is Shallow: False
-Commits Behind Count: 3
-Diverged: False
-2023-12-27 01:40:01,437 [base_deploy.py:log_info()] - Git Repo sonar: Channel: dev
-2023-12-27 01:40:01,437 [base_deploy.py:log_info()] - Git Repo sonar: Validity check for git repo passed
-2023-12-27 01:40:01,452 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros status --porcelain -b) successfully finished
-2023-12-27 01:40:01,474 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros branch --list --no-color) successfully finished
-2023-12-27 01:40:01,494 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros remote get-url origin) successfully finished
-2023-12-27 01:40:01,922 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros fetch origin --prune --progress) successfully finished
-2023-12-27 01:40:01,934 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros merge-base --is-ancestor HEAD origin/main) successfully finished
-2023-12-27 01:40:01,945 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros rev-parse HEAD) successfully finished
-2023-12-27 01:40:01,958 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros describe --always --tags --long --dirty --abbrev=8) successfully finished
-2023-12-27 01:40:01,969 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros rev-parse origin/main) successfully finished
-2023-12-27 01:40:01,981 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros describe origin/main --always --tags --long --abbrev=8) successfully finished
-2023-12-27 01:40:01,993 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros rev-list HEAD..14840a4f1cdc38358d3c2097088e58ac5d502914 --count) successfully finished
-2023-12-27 01:40:02,006 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros log 01c0d8aa06b39576501faaf9c905fae37d8aaef0..origin/main --format="sha:%H%x1Dauthor:%an%x1Ddate:%ct%x1Dsubject:%s%x1Dmessage:%b%x1E" --max-count=100) successfully finished
-2023-12-27 01:40:02,024 [shell_command.py:_check_proc_success()] - Command (git -C /home/Pi/printer_data/config/klipper-macros for-each-ref --count=100 --sort='-creatordate' --contains=HEAD --merged=origin/main --format='%(if)%(*objecttype)%(then)%(*objecttype) %(*objectname)%(else)%(objecttype) %(objectname)%(end) %(refname)' 'refs/tags') successfully finished
-2023-12-27 01:40:02,025 [git_deploy.py:log_repo_info()] - Git Repo klipper-macros Detected:
-Owner: jschuh
-Repository Name: klipper-macros
-Path: /home/Pi/printer_data/config/klipper-macros
-Remote: origin
-Branch: main
-Remote URL: https://github.com/jschuh/klipper-macros.git
-Recovery URL: https://github.com/jschuh/klipper-macros.git
-Current Commit SHA: 01c0d8aa06b39576501faaf9c905fae37d8aaef0
-Upstream Commit SHA: 14840a4f1cdc38358d3c2097088e58ac5d502914
-Current Version: v0.8.7-0-g01c0d8aa
-Upstream Version: v0.8.8-0-g14840a4f
-Rollback Commit: 01c0d8aa06b39576501faaf9c905fae37d8aaef0
-Rollback Branch: main
-Rollback Version: v0.8.7-0-g01c0d8aa
-Is Dirty: False
-Is Detached: False
-Is Shallow: False
-Commits Behind Count: 5
-Diverged: False
-2023-12-27 01:40:02,025 [base_deploy.py:log_info()] - Git Repo klipper-macros: Channel: dev
-2023-12-27 01:40:02,025 [base_deploy.py:log_info()] - Git Repo klipper-macros: Validity check for git repo passed
+2024-02-14 02:15:25,201 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:15:25,203 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:15:26,094 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xf68aada8>, <Task finished name='Task-14086075' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2024-02-14 02:15:26,594 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe72426a0>, <Task finished name='Task-14086169' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2024-02-14 02:15:27,092 [ioloop.py:_run_callback()] - Exception in callback functools.partial(<function _HTTPConnection.__init__.<locals>.<lambda> at 0xe7242340>, <Task finished name='Task-14086254' coro=<_HTTPConnection.run() done, defined at /home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py:290> exception=gaierror(-3, 'Temporary failure in name resolution')>)
+Traceback (most recent call last):
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/ioloop.py", line 740, in _run_callback
+    ret = callback()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 287, in <lambda>
+    gen.convert_yielded(self.run()), lambda f: f.result()
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/simple_httpclient.py", line 340, in run
+    stream = await self.tcp_client.connect(
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/Pi/moonraker-env/lib/python3.9/site-packages/tornado/netutil.py", line 433, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/usr/lib/python3.9/asyncio/base_events.py", line 856, in getaddrinfo
+    return await self.run_in_executor(
+  File "/usr/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+2024-02-14 02:15:28,095 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'moonraker': [Errno -3] Temporary failure in name resolution
+2024-02-14 02:15:30,118 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'klipper': [Errno -3] Temporary failure in name resolution
+2024-02-14 02:15:32,141 [announcements.py:_fetch_moonlight()] - Failed to update subscription 'mainsail': [Errno -3] Temporary failure in name resolution
+2024-02-14 02:15:35,210 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:15:55,233 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:16:05,247 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.195
+2024-02-14 02:16:05,251 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.195
+2024-02-14 02:16:15,261 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:16:15,263 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:16:25,271 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:16:25,274 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:17:25,340 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:17:25,344 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:17:35,351 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:17:35,354 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:19:05,455 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:19:05,457 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:19:15,467 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:19:35,489 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:19:35,492 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:21:25,614 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:21:25,616 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:21:35,628 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:21:45,639 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:21:55,649 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:21:55,652 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:23:25,756 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:23:25,759 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:23:35,763 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:23:35,766 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:23:45,773 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:23:45,776 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:24:05,792 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:24:25,826 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:25:05,866 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.195
+2024-02-14 02:25:05,869 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.195
+2024-02-14 02:25:25,894 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:25:25,897 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:25:45,918 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:25:55,927 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:26:05,938 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:26:05,940 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:27:26,034 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:27:26,036 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:27:36,051 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:27:46,060 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:27:46,063 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:27:56,073 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:27:56,075 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:28:06,086 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.195
+2024-02-14 02:28:06,088 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.195
+2024-02-14 02:28:36,113 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:28:36,116 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:28:46,126 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:28:46,129 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:29:26,178 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:29:26,180 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:29:36,190 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:29:46,206 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:29:46,209 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:29:56,220 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:29:56,222 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:30:06,233 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:30:16,242 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:30:56,277 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:31:16,316 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.195
+2024-02-14 02:31:16,320 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.195
+2024-02-14 02:31:26,328 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:31:26,330 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:31:36,337 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:31:46,349 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:31:46,352 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:32:06,372 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:32:06,374 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:32:26,396 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:32:36,408 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:32:36,410 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:33:36,481 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:33:36,483 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:33:56,502 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:33:56,505 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:34:16,528 [machine.py:_find_public_ip()] - Failed to detect local IP address
+2024-02-14 02:34:16,532 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
+2024-02-14 02:34:26,539 [machine.py:_find_public_ip()] - Detected Local IP: 169.254.96.46
+2024-02-14 02:34:26,542 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://169.254.96.46
+2024-02-14 02:34:56,572 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.195
+2024-02-14 02:34:56,575 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.195
