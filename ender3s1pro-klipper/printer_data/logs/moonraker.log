@@ -1,4 +1,4 @@
--------------------- Log Start | Fri Mar 29 06:30:08 2024 --------------------
+-------------------- Log Start | Sat Mar 30 17:33:16 2024 --------------------
 data_path: /home/Pi/printer_data
 is_default_data_path: False
 config_file: /home/Pi/printer_data/config/moonraker.conf
@@ -99,7 +99,7 @@ managed_services = klipper
 All Configuration Files:
 /home/Pi/printer_data/config/moonraker.conf
 #################################################################
-Unsafe Shutdown Count: 13
+Unsafe Shutdown Count: 14
 
 System Info:
 
@@ -163,8 +163,8 @@ unit_name: moonraker.service
 is_default: True
 manager: systemd
 Properties:
-**Requires=['network-online.target', 'system.slice', 'sysinit.target']
-**After=['basic.target', 'system.slice', 'klipper.service', 'sysinit.target', 'network-online.target', 'systemd-journald.socket']
+**Requires=['network-online.target', 'sysinit.target', 'system.slice']
+**After=['network-online.target', 'basic.target', 'system.slice', 'systemd-journald.socket', 'klipper.service', 'sysinit.target']
 **SupplementaryGroups=['moonraker-admin']
 **EnvironmentFiles=/home/Pi/printer_data/systemd/moonraker.env
 **ExecStart=/home/Pi/moonraker-env/bin/python $MOONRAKER_ARGS
@@ -178,8 +178,8 @@ unit_name: klipper.service
 is_default: True
 manager: systemd
 Properties:
-**Requires=['system.slice', 'sysinit.target', '-.mount']
-**After=['basic.target', '-.mount', 'system.slice', 'sysinit.target', 'network-online.target', 'systemd-journald.socket']
+**Requires=['-.mount', 'sysinit.target', 'system.slice']
+**After=['network-online.target', 'basic.target', 'system.slice', '-.mount', 'systemd-journald.socket', 'sysinit.target']
 **SupplementaryGroups=[]
 **EnvironmentFiles=/home/Pi/printer_data/systemd/klipper.env
 **ExecStart=/home/Pi/klippy-env/bin/python $KLIPPER_ARGS
@@ -195,56 +195,95 @@ Git Repo mainsail-config: No warnings detected
 Git Repo sonar: No warnings detected
 Git Repo klipper-macros: No warnings detected
 Klipper Version: v0.11.0-303-g67499853-dirty
-2024-03-29 02:30:08,143 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 02:30:08,144 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 02:30:18,154 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 02:30:18,157 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 02:30:38,178 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 02:30:38,181 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 02:30:48,186 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 02:30:48,189 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 03:10:40,852 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 03:10:40,857 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 03:10:50,864 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 03:10:50,870 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 03:11:20,895 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 03:11:20,897 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 03:11:30,907 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 03:11:30,910 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 03:58:03,975 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 03:58:03,977 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 03:58:23,996 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 03:58:23,999 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 07:29:38,184 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 07:29:38,186 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 07:29:48,199 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 07:29:48,202 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 08:18:01,436 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 08:18:01,438 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 08:18:11,462 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 08:18:11,465 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 08:18:41,490 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 08:18:41,492 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 08:18:51,501 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 08:18:51,503 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 08:19:01,509 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 08:20:11,595 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 08:20:11,597 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 08:20:31,617 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 08:20:31,620 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 10:39:20,914 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 10:39:20,916 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 10:39:30,925 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 10:39:30,928 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 10:40:20,983 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 10:40:20,985 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 10:40:30,993 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 10:40:30,995 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 11:19:23,534 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 11:19:23,536 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 11:19:33,542 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 11:19:33,545 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
-2024-03-29 11:39:04,874 [machine.py:_find_public_ip()] - Failed to detect local IP address
-2024-03-29 11:39:04,876 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://127.0.0.1
-2024-03-29 11:39:14,884 [machine.py:_find_public_ip()] - Detected Local IP: 192.168.0.18
-2024-03-29 11:39:14,887 [webcam.py:_set_default_host_ip()] - Default public webcam address set: http://192.168.0.18
+2024-03-30 13:33:16,148 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.112
+2024-03-30 13:33:16,151 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 6.89ms
+2024-03-30 13:33:16,152 [websockets.py:open()] - Websocket Opened: ID: 3888876920, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0, Host Name: 192.168.0.18
+2024-03-30 13:33:16,188 [websockets.py:_handle_identify()] - Websocket 3888876920 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2024-03-30 13:38:46,318 [websockets.py:write_to_socket()] - Websocket closed while writing: 3888876920
+2024-03-30 13:38:46,653 [websockets.py:on_close()] - Websocket Closed: ID: 3888876920 Close Code: None, Close Reason: None, Pong Time Elapsed: 0.03
+2024-03-30 14:38:08,863 [authorization.py:_prune_conn_handler()] - Trusted Connection Expired, IP: 192.168.0.112
+2024-03-30 17:52:14,343 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.112
+2024-03-30 17:52:14,346 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 7.21ms
+2024-03-30 17:52:14,347 [websockets.py:open()] - Websocket Opened: ID: 4137483136, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0, Host Name: 192.168.0.18
+2024-03-30 17:52:14,362 [websockets.py:_handle_identify()] - Websocket 4137483136 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2024-03-30 17:56:01,240 [app.py:prepare()] - Upload Request Received from 192.168.0.112
+2024-03-30 17:56:01,536 [app.py:post()] - Processing Uploaded File: /CE3S1PRO_MultiFlowTest90%.gcode
+2024-03-30 17:56:01,750 [shell_command.py:pipe_data_received()] - INFO:metadata:Object Processing is disabled
+
+2024-03-30 17:56:01,800 [shell_command.py:_check_proc_success()] - Command (/home/Pi/moonraker-env/bin/python /home/Pi/moonraker/moonraker/components/file_manager/metadata.py -p /home/Pi/printer_data/gcodes -f "CE3S1PRO_MultiFlowTest90%.gcode") successfully finished
+2024-03-30 17:56:01,804 [app.py:log_request()] - 201 POST /server/files/upload (192.168.0.112) [_TRUSTED_USER_] 565.10ms
+2024-03-30 17:56:28,891 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 5.36ms
+2024-03-30 17:56:28,892 [websockets.py:open()] - Websocket Opened: ID: 4137552360, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0, Host Name: 192.168.0.18
+2024-03-30 17:56:28,923 [websockets.py:_handle_identify()] - Websocket 4137552360 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2024-03-30 18:01:54,324 [authorization.py:_check_trusted_connection()] - Trusted Connection Detected, IP: 192.168.0.52
+2024-03-30 18:01:54,327 [app.py:log_request()] - 101 GET /websocket (192.168.0.52) [_TRUSTED_USER_] 7.55ms
+2024-03-30 18:01:54,328 [websockets.py:open()] - Websocket Opened: ID: 4137550656, Proxied: True, User Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1, Host Name: 192.168.0.18
+2024-03-30 18:01:54,349 [websockets.py:_handle_identify()] - Websocket 4137550656 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2024-03-30 18:02:37,712 [klippy_connection.py:_process_status_update()] - Klippy has shutdown
+2024-03-30 18:02:37,723 [proc_stats.py:_handle_shutdown()] - 
+Moonraker System Usage Statistics:
+System Time: 1711836128.013958, Usage: 2.58%, Memory: 28500 kB
+System Time: 1711836129.014965, Usage: 2.8%, Memory: 28500 kB
+System Time: 1711836130.016036, Usage: 2.61%, Memory: 28500 kB
+System Time: 1711836131.016379, Usage: 2.55%, Memory: 28500 kB
+System Time: 1711836132.017509, Usage: 2.52%, Memory: 28500 kB
+System Time: 1711836133.018715, Usage: 2.48%, Memory: 28500 kB
+System Time: 1711836134.021238, Usage: 2.46%, Memory: 28500 kB
+System Time: 1711836135.024394, Usage: 4.9%, Memory: 28500 kB
+System Time: 1711836136.025078, Usage: 2.63%, Memory: 28500 kB
+System Time: 1711836137.025506, Usage: 2.64%, Memory: 28500 kB
+System Time: 1711836138.027523, Usage: 2.5%, Memory: 28500 kB
+System Time: 1711836139.027465, Usage: 2.86%, Memory: 28500 kB
+System Time: 1711836140.028097, Usage: 2.52%, Memory: 28500 kB
+System Time: 1711836141.030017, Usage: 2.5%, Memory: 28500 kB
+System Time: 1711836142.030528, Usage: 2.65%, Memory: 28500 kB
+System Time: 1711836143.032992, Usage: 2.49%, Memory: 28500 kB
+System Time: 1711836144.035245, Usage: 2.52%, Memory: 28500 kB
+System Time: 1711836145.036966, Usage: 4.9%, Memory: 28500 kB
+System Time: 1711836146.037007, Usage: 2.6%, Memory: 28500 kB
+System Time: 1711836147.038624, Usage: 2.79%, Memory: 28500 kB
+System Time: 1711836148.039384, Usage: 2.62%, Memory: 28500 kB
+System Time: 1711836149.041192, Usage: 2.82%, Memory: 28500 kB
+System Time: 1711836150.041918, Usage: 2.53%, Memory: 28500 kB
+System Time: 1711836151.043355, Usage: 2.56%, Memory: 28500 kB
+System Time: 1711836152.043963, Usage: 2.68%, Memory: 28500 kB
+System Time: 1711836153.045833, Usage: 2.6%, Memory: 28500 kB
+System Time: 1711836154.048419, Usage: 2.82%, Memory: 28500 kB
+System Time: 1711836155.050880, Usage: 5.02%, Memory: 28500 kB
+System Time: 1711836156.051129, Usage: 2.75%, Memory: 28500 kB
+System Time: 1711836157.052640, Usage: 2.53%, Memory: 28500 kB
+CPU Temperature: 51.121
+2024-03-30 18:02:37,726 [proc_stats.py:_handle_shutdown()] - Throttled Flags: 
+2024-03-30 18:03:03,013 [websockets.py:on_close()] - Websocket Closed: ID: 4137550656 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 8.68
+2024-03-30 18:03:03,636 [app.py:log_request()] - 101 GET /websocket (192.168.0.52) [_TRUSTED_USER_] 4.85ms
+2024-03-30 18:03:03,637 [websockets.py:open()] - Websocket Opened: ID: 3888875288, Proxied: True, User Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1, Host Name: 192.168.0.18
+2024-03-30 18:03:03,675 [websockets.py:_handle_identify()] - Websocket 3888875288 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2024-03-30 18:03:26,084 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:03:33,694 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:03:44,088 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:03:49,291 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:03:52,716 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:01,394 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:07,247 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:09,927 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:19,050 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:19,908 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:20,530 [websockets.py:on_close()] - Websocket Closed: ID: 4137552360 Close Code: 1001, Close Reason: None, Pong Time Elapsed: 1.61
+2024-03-30 18:04:20,531 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:20,906 [app.py:log_request()] - 101 GET /websocket (192.168.0.112) [_TRUSTED_USER_] 4.93ms
+2024-03-30 18:04:20,907 [websockets.py:open()] - Websocket Opened: ID: 3888883912, Proxied: True, User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0, Host Name: 192.168.0.18
+2024-03-30 18:04:20,939 [websockets.py:_handle_identify()] - Websocket 3888883912 Client Identified - Name: mainsail, Version: 2.8.0, Type: web
+2024-03-30 18:04:26,086 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
+2024-03-30 18:04:26,343 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:29,417 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:30,119 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:33,695 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
+2024-03-30 18:04:34,167 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:37,662 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:44,091 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.01 seconds
+2024-03-30 18:04:47,119 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
+2024-03-30 18:04:49,292 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
+2024-03-30 18:04:49,994 [websockets.py:on_close()] - Websocket Closed: ID: 3888875288 Close Code: None, Close Reason: None, Pong Time Elapsed: 5.33
+2024-03-30 18:04:52,717 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
+2024-03-30 18:05:01,395 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 120.00 seconds
+2024-03-30 18:05:02,136 [klippy_connection.py:wait()] - Request 'gcode/script' pending: 60.00 seconds
