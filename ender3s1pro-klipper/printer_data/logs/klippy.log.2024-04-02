@@ -1,14 +1,3 @@
-=============== Log rollover at Wed Apr  3 08:53:04 2024 ===============
-Starting Klippy...
-Args: ['/home/Pi/klipper/klippy/klippy.py', '/home/Pi/printer_data/config/printer.cfg', '-l', '/home/Pi/printer_data/logs/klippy.log', '-I', '/home/Pi/printer_data/comms/klippy.serial', '-a', '/home/Pi/printer_data/comms/klippy.sock']
-Git version: 'v0.11.0-303-g67499853-dirty'
-Untracked files: klippy/extras/gcode_shell_command.py
-Branch: master
-Remote: origin
-Tracked URL: https://github.com/Klipper3d/klipper.git
-CPU: 4 core ?
-Python: '3.9.2 (default, Mar 12 2021, 04:06:34) \n[GCC 10.2.1 20210110]'
-Start printer at Wed Apr  3 08:53:05 2024 (1712148785.2 39.5)
 ===== Config file =====
 [gcode_shell_command hello_world]
 command = echo hello world
@@ -3298,145 +3287,43 @@ gcode =
 [save_variables]
 filename = ~/printer_data/variables.cfg
 =======================
-Extruder max_extrude_ratio=0.266081
-mcu 'mcu': Starting serial connect
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-webhooks client 4128873296: New connection
-webhooks client 4128873296: Client info {'program': 'Moonraker', 'version': 'v0.8.0-186-g2641fc5'}
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-mcu 'mcu': Unable to open serial port: [Errno 2] could not open port /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0: [Errno 2] No such file or directory: '/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0'
-MCU error during connect
-Traceback (most recent call last):
-  File "/home/Pi/klipper/klippy/mcu.py", line 800, in _mcu_identify
-    self._serial.connect_uart(self._serialport, self._baud, rts)
-  File "/home/Pi/klipper/klippy/serialhdl.py", line 182, in connect_uart
-    self._error("Unable to connect")
-  File "/home/Pi/klipper/klippy/serialhdl.py", line 61, in _error
-    raise error(self.warn_prefix + (msg % params))
-serialhdl.error: mcu 'mcu': Unable to connect
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/Pi/klipper/klippy/klippy.py", line 176, in _connect
-    self.send_event("klippy:mcu_identify")
-  File "/home/Pi/klipper/klippy/klippy.py", line 263, in send_event
-    return [cb(*params) for cb in self.event_handlers.get(event, [])]
-  File "/home/Pi/klipper/klippy/klippy.py", line 263, in <listcomp>
-    return [cb(*params) for cb in self.event_handlers.get(event, [])]
-  File "/home/Pi/klipper/klippy/mcu.py", line 805, in _mcu_identify
-    raise error(str(e))
-mcu.error: mcu 'mcu': Unable to connect
-Build file /home/Pi/klipper/klippy/../.config(2833): Thu Oct 19 21:58:37 2023
-========= Last MCU build config =========
-CONFIG_LOW_LEVEL_OPTIONS=y
-# CONFIG_MACH_AVR is not set
-# CONFIG_MACH_ATSAM is not set
-# CONFIG_MACH_ATSAMD is not set
-# CONFIG_MACH_LPC176X is not set
-CONFIG_MACH_STM32=y
-# CONFIG_MACH_HC32F460 is not set
-# CONFIG_MACH_RP2040 is not set
-# CONFIG_MACH_PRU is not set
-# CONFIG_MACH_AR100 is not set
-# CONFIG_MACH_LINUX is not set
-# CONFIG_MACH_SIMU is not set
-CONFIG_BOARD_DIRECTORY="stm32"
-CONFIG_MCU="stm32f401xc"
-CONFIG_CLOCK_FREQ=84000000
-CONFIG_SERIAL=y
-CONFIG_FLASH_SIZE=0x40000
-CONFIG_FLASH_BOOT_ADDRESS=0x8000000
-CONFIG_RAM_START=0x20000000
-CONFIG_RAM_SIZE=0x10000
-CONFIG_STACK_SIZE=512
-CONFIG_FLASH_APPLICATION_ADDRESS=0x8010000
-CONFIG_STM32_SELECT=y
-# CONFIG_MACH_STM32F103 is not set
-# CONFIG_MACH_STM32F207 is not set
-CONFIG_MACH_STM32F401=y
-# CONFIG_MACH_STM32F405 is not set
-# CONFIG_MACH_STM32F407 is not set
-# CONFIG_MACH_STM32F429 is not set
-# CONFIG_MACH_STM32F446 is not set
-# CONFIG_MACH_STM32F765 is not set
-# CONFIG_MACH_STM32F031 is not set
-# CONFIG_MACH_STM32F042 is not set
-# CONFIG_MACH_STM32F070 is not set
-# CONFIG_MACH_STM32F072 is not set
-# CONFIG_MACH_STM32G070 is not set
-# CONFIG_MACH_STM32G071 is not set
-# CONFIG_MACH_STM32G0B0 is not set
-# CONFIG_MACH_STM32G0B1 is not set
-# CONFIG_MACH_STM32G431 is not set
-# CONFIG_MACH_STM32H723 is not set
-# CONFIG_MACH_STM32H743 is not set
-# CONFIG_MACH_STM32H750 is not set
-# CONFIG_MACH_STM32L412 is not set
-# CONFIG_MACH_N32G452 is not set
-# CONFIG_MACH_N32G455 is not set
-CONFIG_MACH_STM32F4=y
-CONFIG_HAVE_STM32_USBOTG=y
-CONFIG_STM32_DFU_ROM_ADDRESS=0
-# CONFIG_STM32_FLASH_START_8000 is not set
-CONFIG_STM32_FLASH_START_10000=y
-# CONFIG_STM32_FLASH_START_4000 is not set
-# CONFIG_STM32_FLASH_START_0000 is not set
-CONFIG_STM32_CLOCK_REF_8M=y
-# CONFIG_STM32_CLOCK_REF_12M is not set
-# CONFIG_STM32_CLOCK_REF_16M is not set
-# CONFIG_STM32_CLOCK_REF_20M is not set
-# CONFIG_STM32_CLOCK_REF_24M is not set
-# CONFIG_STM32_CLOCK_REF_25M is not set
-# CONFIG_STM32_CLOCK_REF_INTERNAL is not set
-CONFIG_CLOCK_REF_FREQ=8000000
-CONFIG_STM32F0_TRIM=16
-# CONFIG_STM32_USB_PA11_PA12 is not set
-CONFIG_STM32_SERIAL_USART1=y
-# CONFIG_STM32_SERIAL_USART1_ALT_PB7_PB6 is not set
-# CONFIG_STM32_SERIAL_USART2 is not set
-# CONFIG_STM32_SERIAL_USART2_ALT_PD6_PD5 is not set
-CONFIG_SERIAL_BAUD=250000
-CONFIG_USB_VENDOR_ID=0x1d50
-CONFIG_USB_DEVICE_ID=0x614e
-CONFIG_USB_SERIAL_NUMBER="12345"
-CONFIG_WANT_GPIO_BITBANGING=y
-CONFIG_WANT_DISPLAYS=y
-CONFIG_WANT_SENSORS=y
-CONFIG_WANT_LIS2DW=y
-CONFIG_WANT_SOFTWARE_I2C=y
-CONFIG_WANT_SOFTWARE_SPI=y
-CONFIG_CANBUS_FREQUENCY=1000000
-CONFIG_INITIAL_PINS=""
-CONFIG_HAVE_GPIO=y
-CONFIG_HAVE_GPIO_ADC=y
-CONFIG_HAVE_GPIO_SPI=y
-CONFIG_HAVE_GPIO_SDIO=y
-CONFIG_HAVE_GPIO_I2C=y
-CONFIG_HAVE_GPIO_HARD_PWM=y
-CONFIG_HAVE_STRICT_TIMING=y
-CONFIG_HAVE_CHIPID=y
-CONFIG_HAVE_STEPPER_BOTH_EDGE=y
-CONFIG_HAVE_BOOTLOADER_REQUEST=y
-CONFIG_INLINE_STEPPER_HACK=y
-=======================
-Build file /home/Pi/klipper/klippy/../out/klipper.dict(8802): Thu Oct 19 21:58:56 2023
-Last MCU build version: v0.11.0-303-g67499853
-Last MCU build tools: gcc: (15:8-2019-q3-1+b1) 8.3.1 20190703 (release) [gcc-8-branch revision 273027] binutils: (2.34-4+rpi1+14) 2.34
-Last MCU build config: ADC_MAX=4095 BUS_PINS_i2c1=PB6,PB7 BUS_PINS_i2c1a=PB8,PB9 BUS_PINS_i2c2=PB10,PB11 BUS_PINS_i2c3=PA8,PC9 BUS_PINS_sdio=PC12,PD2,PC8,PC9,PC10,PC11 BUS_PINS_spi1=PA6,PA7,PA5 BUS_PINS_spi1a=PB4,PB5,PB3 BUS_PINS_spi2=PB14,PB15,PB13 BUS_PINS_spi2a=PC2,PC3,PB10 BUS_PINS_spi3=PB4,PB5,PB3 BUS_PINS_spi3a=PC11,PC12,PC10 BUS_PINS_spi4=PE13,PE14,PE12 CLOCK_FREQ=84000000 MCU=stm32f401xc PWM_MAX=255 RECEIVE_WINDOW=192 RESERVE_PINS_crystal=PH0,PH1 RESERVE_PINS_serial=PA10,PA9 SERIAL_BAUD=250000 STATS_SUMSQ_BASE=256 STEPPER_BOTH_EDGE=1
-Build file /home/Pi/klipper/klippy/../out/klipper.elf(1033428): Thu Oct 19 21:59:03 2023
+Loaded MCU 'mcu' 124 commands (v0.11.0-303-g67499853 / gcc: (15:8-2019-q3-1+b1) 8.3.1 20190703 (release) [gcc-8-branch revision 273027] binutils: (2.34-4+rpi1+14) 2.34)
+MCU 'mcu' config: ADC_MAX=4095 BUS_PINS_i2c1=PB6,PB7 BUS_PINS_i2c1a=PB8,PB9 BUS_PINS_i2c2=PB10,PB11 BUS_PINS_i2c3=PA8,PC9 BUS_PINS_sdio=PC12,PD2,PC8,PC9,PC10,PC11 BUS_PINS_spi1=PA6,PA7,PA5 BUS_PINS_spi1a=PB4,PB5,PB3 BUS_PINS_spi2=PB14,PB15,PB13 BUS_PINS_spi2a=PC2,PC3,PB10 BUS_PINS_spi3=PB4,PB5,PB3 BUS_PINS_spi3a=PC11,PC12,PC10 BUS_PINS_spi4=PE13,PE14,PE12 CLOCK_FREQ=84000000 MCU=stm32f401xc PWM_MAX=255 RECEIVE_WINDOW=192 RESERVE_PINS_crystal=PH0,PH1 RESERVE_PINS_serial=PA10,PA9 SERIAL_BAUD=250000 STATS_SUMSQ_BASE=256 STEPPER_BOTH_EDGE=1
+Configured MCU 'mcu' (1024 moves)
+Args: ['/home/Pi/klipper/klippy/klippy.py', '/home/Pi/printer_data/config/printer.cfg', '-l', '/home/Pi/printer_data/logs/klippy.log', '-I', '/home/Pi/printer_data/comms/klippy.serial', '-a', '/home/Pi/printer_data/comms/klippy.sock']
+Git version: 'v0.11.0-303-g67499853-dirty'
+Untracked files: klippy/extras/gcode_shell_command.py
+Branch: master
+Remote: origin
+Tracked URL: https://github.com/Klipper3d/klipper.git
+CPU: 4 core ?
+Python: '3.9.2 (default, Mar 12 2021, 04:06:34) \n[GCC 10.2.1 20210110]'
+webhooks client 4126170296: {'program': 'Moonraker', 'version': 'v0.8.0-186-g2641fc5'}
+=============== Log rollover at Tue Apr  2 18:17:02 2024 ===============
+b'Got EOF when reading from device'
+Timeout with MCU 'mcu' (eventtime=259906.096346)
+Transition to shutdown state: Lost communication with MCU 'mcu'
+Dumping gcode input 0 blocks
+Dumping 20 requests for client 4126170296
+Received 605.735412: b'{"id": 4136239840, "method": "objects/query", "params": {"objects": {"extruder": ["can_extrude"]}}}'
+Received 2329.515639: b'{"id": 4136242192, "method": "info", "params": {}}'
+Received 2329.516148: b'{"id": 4136242288, "method": "objects/list", "params": {}}'
+Received 2329.516148: b'{"id": 4136239936, "method": "gcode/help", "params": {}}'
+Received 2329.633803: b'{"id": 4136241064, "method": "objects/subscribe", "params": {"objects": {"webhooks": null, "configfile": null, "mcu": null, "gcode_macro HELLO_WORLD": null, "gcode_move": null, "print_stats": null, "virtual_sdcard": null, "pause_resume": null, "display_status": null, "gcode_macro CANCEL_PRINT": null, "gcode_macro PAUSE": null, "gcode_macro RESUME": null, "gcode_macro SET_PAUSE_NEXT_LAYER": null, "gcode_macro SET_PAUSE_AT_LAYER": null, "gcode_macro SET_PRINT_STATS_INFO": null, "gcode_macro _TOOLHEAD_PARK_PAUSE_CANCEL": null, "gcode_macro _CLIENT_EXTRUDE": null, "gcode_macro _CLIENT_RETRACT": null, "gcode_macro update_git": null, "gcode_macro probe_calibration": null, "heaters": null, "heater_bed": null, "heater_fan hotend_fan": null, "fan": null, "probe": null, "bed_mesh": null, "filament_switch_sensor e0_sensor": null, "bed_screws": null, "screws_tilt_adjust": null, "gcode_macro _km_options": null, "gcode_macro bed_mesh_calibrate_fast": null, "gcode_macro bed_mesh_check": null, "gcode_macro _apply_bed_surface_offset": null, "gcode_macro _init_surfaces": null, "gcode_macro adjust_surface_offsets": null, "gcode_macro set_surface_offset": null, "gcode_macro set_surface_active": null, "gcode_macro set_gcode_offset": null, "gcode_macro make_surface_mesh": null, "gcode_macro load_surface_mesh": null, "gcode_macro m300": null, "gcode_macro set_draw_params": null, "gcode_macro draw_line_to": null, "gcode_macro draw_purge_line": null, "gcode_macro _check_fan_params": null, "gcode_macro set_fan_scaling": null, "gcode_macro reset_fan_scaling": null, "gcode_macro m106": null, "gcode_macro _load_unload": null, "gcode_macro LOAD_FILAMENT": null, "gcode_macro UNLOAD_FILAMENT": null, "gcode_macro _pause_inner_m700": null, "gcode_macro m701": null, "gcode_macro m702": null, "gcode_macro _km_globals": null, "gcode_macro check_km_config": null, "gcode_macro kmvars": null, "gcode_macro check_macro_docs": null, "gcode_macro listvars": null, "gcode_macro list_macros": null, "gcode_macro _list_macros_display": null, "gcode_macro set_heater_temperature_scaled": null, "gcode_macro temperature_wait_scaled": null, "gcode_macro _gcode_wait_wrapper_inner": null, "gcode_macro _gcode_wait_wrapper": null, "gcode_macro m109": null, "gcode_macro m190": null, "gcode_macro m191": null, "gcode_macro m104": null, "gcode_macro m140": null, "gcode_macro m141": null, "gcode_macro _check_heater_params": null, "gcode_macro set_heater_scaling": null, "gcode_macro reset_heater_scaling": null, "gcode_macro _km_idle_timeout": null, "gcode_macro _check_kinematic_limits": null, "gcode_macro lazy_home": null, "gcode_macro _lazy_home_inner": null, "gcode_macro g28": null, "gcode_macro before_layer_change": null, "gcode_macro after_layer_change": null, "gcode_macro gcode_at_layer": null, "gcode_macro _km_layer_run": null, "gcode_macro init_layer_gcode": null, "gcode_macro _reset_layer_gcode": null, "gcode_macro cancel_all_layer_gcode": null, "gcode_macro _update_layer_compat": null, "gcode_macro pause_next_layer": null, "gcode_macro pause_at_layer": null, "gcode_macro speed_at_layer": null, "gcode_macro flow_at_layer": null, "gcode_macro fan_at_layer": null, "gcode_macro heater_at_layer": null, "gcode_macro park": null, "gcode_macro _park_inner": null, "gcode_macro g27": null, "gcode_macro pause": null, "gcode_macro m600": null, "gcode_macro m601": null, "gcode_macro m602": null, "gcode_macro m24": null, "gcode_macro m25": null, "gcode_macro resume": null, "gcode_macro clear_pause": null, "gcode_macro print_start": null, "gcode_macro _print_start_phase_init": null, "gcode_macro _print_start_phase_preheat": null, "gcode_macro _print_start_phase_probing": null, "gcode_macro _print_start_phase_extruder": null, "gcode_macro _print_start_phase_purge": null, "gcode_macro _km_park_if_needed": null, "gcode_macro _km_apply_print_offset": null, "gcode_macro _km_mesh_if_needed": null, "gcode_macro print_start_set": null, "gcode_macro _print_start_phase_check": null, "gcode_macro print_end": null, "gcode_macro _print_end_inner": null, "gcode_macro _km_check_is_printing": null, "gcode_macro _km_check_and_set_print_bounds": null, "gcode_macro _km_save_state": null, "gcode_macro save_gcode_state": null, "gcode_macro restore_gcode_state": null, "gcode_macro _abort_on_gcode_state": null, "gcode_macro _km_print_status": null, "gcode_macro gcode_on_print_status": null, "gcode_macro m201": null, "gcode_macro m203": null, "gcode_macro m205": null, "gcode_macro m900": null, "gcode_macro _reset_velocity_limits": null, "gcode_macro bed_mesh_calibrate": null, "gcode_macro g29": null, "idle_timeout": null, "save_variables": null, "stepper_enable": null, "motion_report": null, "query_endstops": null, "system_stats": null, "manual_probe": null, "toolhead": null, "extruder": null}, "response_template": {"method": "process_status_update"}}}'
+Received 2331.300532: b'{"id": 3909441664, "method": "objects/query", "params": {"objects": {"extruder": ["can_extrude"]}}}'
+Received 103899.203603: b'{"id": 4136239432, "method": "info", "params": {}}'
+Received 103901.600062: b'{"id": 4136240296, "method": "gcode/script", "params": {"script": "SDCARD_PRINT_FILE FILENAME=\\"CE3S1PRO_Garmin Female to GoPro 3(1).gcode\\""}}'
+Received 103945.837903: b'{"id": 3908541072, "method": "info", "params": {}}'
+Received 103945.837903: b'{"id": 4136240512, "method": "objects/list", "params": {}}'
+Received 103945.838825: b'{"id": 4136239336, "method": "gcode/help", "params": {}}'
+Received 103945.915103: b'{"id": 3908542224, "method": "objects/subscribe", "params": {"objects": {"webhooks": null, "configfile": null, "mcu": null, "gcode_macro HELLO_WORLD": null, "gcode_move": null, "print_stats": null, "virtual_sdcard": null, "pause_resume": null, "display_status": null, "gcode_macro CANCEL_PRINT": null, "gcode_macro PAUSE": null, "gcode_macro RESUME": null, "gcode_macro SET_PAUSE_NEXT_LAYER": null, "gcode_macro SET_PAUSE_AT_LAYER": null, "gcode_macro SET_PRINT_STATS_INFO": null, "gcode_macro _TOOLHEAD_PARK_PAUSE_CANCEL": null, "gcode_macro _CLIENT_EXTRUDE": null, "gcode_macro _CLIENT_RETRACT": null, "gcode_macro update_git": null, "gcode_macro probe_calibration": null, "heaters": null, "heater_bed": null, "heater_fan hotend_fan": null, "fan": null, "probe": null, "bed_mesh": null, "filament_switch_sensor e0_sensor": null, "bed_screws": null, "screws_tilt_adjust": null, "gcode_macro _km_options": null, "gcode_macro bed_mesh_calibrate_fast": null, "gcode_macro bed_mesh_check": null, "gcode_macro _apply_bed_surface_offset": null, "gcode_macro _init_surfaces": null, "gcode_macro adjust_surface_offsets": null, "gcode_macro set_surface_offset": null, "gcode_macro set_surface_active": null, "gcode_macro set_gcode_offset": null, "gcode_macro make_surface_mesh": null, "gcode_macro load_surface_mesh": null, "gcode_macro m300": null, "gcode_macro set_draw_params": null, "gcode_macro draw_line_to": null, "gcode_macro draw_purge_line": null, "gcode_macro _check_fan_params": null, "gcode_macro set_fan_scaling": null, "gcode_macro reset_fan_scaling": null, "gcode_macro m106": null, "gcode_macro _load_unload": null, "gcode_macro LOAD_FILAMENT": null, "gcode_macro UNLOAD_FILAMENT": null, "gcode_macro _pause_inner_m700": null, "gcode_macro m701": null, "gcode_macro m702": null, "gcode_macro _km_globals": null, "gcode_macro check_km_config": null, "gcode_macro kmvars": null, "gcode_macro check_macro_docs": null, "gcode_macro listvars": null, "gcode_macro list_macros": null, "gcode_macro _list_macros_display": null, "gcode_macro set_heater_temperature_scaled": null, "gcode_macro temperature_wait_scaled": null, "gcode_macro _gcode_wait_wrapper_inner": null, "gcode_macro _gcode_wait_wrapper": null, "gcode_macro m109": null, "gcode_macro m190": null, "gcode_macro m191": null, "gcode_macro m104": null, "gcode_macro m140": null, "gcode_macro m141": null, "gcode_macro _check_heater_params": null, "gcode_macro set_heater_scaling": null, "gcode_macro reset_heater_scaling": null, "gcode_macro _km_idle_timeout": null, "gcode_macro _check_kinematic_limits": null, "gcode_macro lazy_home": null, "gcode_macro _lazy_home_inner": null, "gcode_macro g28": null, "gcode_macro before_layer_change": null, "gcode_macro after_layer_change": null, "gcode_macro gcode_at_layer": null, "gcode_macro _km_layer_run": null, "gcode_macro init_layer_gcode": null, "gcode_macro _reset_layer_gcode": null, "gcode_macro cancel_all_layer_gcode": null, "gcode_macro _update_layer_compat": null, "gcode_macro pause_next_layer": null, "gcode_macro pause_at_layer": null, "gcode_macro speed_at_layer": null, "gcode_macro flow_at_layer": null, "gcode_macro fan_at_layer": null, "gcode_macro heater_at_layer": null, "gcode_macro park": null, "gcode_macro _park_inner": null, "gcode_macro g27": null, "gcode_macro pause": null, "gcode_macro m600": null, "gcode_macro m601": null, "gcode_macro m602": null, "gcode_macro m24": null, "gcode_macro m25": null, "gcode_macro resume": null, "gcode_macro clear_pause": null, "gcode_macro print_start": null, "gcode_macro _print_start_phase_init": null, "gcode_macro _print_start_phase_preheat": null, "gcode_macro _print_start_phase_probing": null, "gcode_macro _print_start_phase_extruder": null, "gcode_macro _print_start_phase_purge": null, "gcode_macro _km_park_if_needed": null, "gcode_macro _km_apply_print_offset": null, "gcode_macro _km_mesh_if_needed": null, "gcode_macro print_start_set": null, "gcode_macro _print_start_phase_check": null, "gcode_macro print_end": null, "gcode_macro _print_end_inner": null, "gcode_macro _km_check_is_printing": null, "gcode_macro _km_check_and_set_print_bounds": null, "gcode_macro _km_save_state": null, "gcode_macro save_gcode_state": null, "gcode_macro restore_gcode_state": null, "gcode_macro _abort_on_gcode_state": null, "gcode_macro _km_print_status": null, "gcode_macro gcode_on_print_status": null, "gcode_macro m201": null, "gcode_macro m203": null, "gcode_macro m205": null, "gcode_macro m900": null, "gcode_macro _reset_velocity_limits": null, "gcode_macro bed_mesh_calibrate": null, "gcode_macro g29": null, "idle_timeout": null, "save_variables": null, "stepper_enable": null, "motion_report": null, "query_endstops": null, "system_stats": null, "manual_probe": null, "toolhead": null, "extruder": null}, "response_template": {"method": "process_status_update"}}}'
+Received 103946.632715: b'{"id": 3908541144, "method": "objects/query", "params": {"objects": {"extruder": ["can_extrude"]}}}'
+Received 171158.881694: b'{"id": 3908542440, "method": "info", "params": {}}'
+Received 171158.881694: b'{"id": 3908541744, "method": "objects/list", "params": {}}'
+Received 171158.882864: b'{"id": 3908541168, "method": "gcode/help", "params": {}}'
+Received 171158.977515: b'{"id": 4138679432, "method": "objects/subscribe", "params": {"objects": {"webhooks": null, "configfile": null, "mcu": null, "gcode_macro HELLO_WORLD": null, "gcode_move": null, "print_stats": null, "virtual_sdcard": null, "pause_resume": null, "display_status": null, "gcode_macro CANCEL_PRINT": null, "gcode_macro PAUSE": null, "gcode_macro RESUME": null, "gcode_macro SET_PAUSE_NEXT_LAYER": null, "gcode_macro SET_PAUSE_AT_LAYER": null, "gcode_macro SET_PRINT_STATS_INFO": null, "gcode_macro _TOOLHEAD_PARK_PAUSE_CANCEL": null, "gcode_macro _CLIENT_EXTRUDE": null, "gcode_macro _CLIENT_RETRACT": null, "gcode_macro update_git": null, "gcode_macro probe_calibration": null, "heaters": null, "heater_bed": null, "heater_fan hotend_fan": null, "fan": null, "probe": null, "bed_mesh": null, "filament_switch_sensor e0_sensor": null, "bed_screws": null, "screws_tilt_adjust": null, "gcode_macro _km_options": null, "gcode_macro bed_mesh_calibrate_fast": null, "gcode_macro bed_mesh_check": null, "gcode_macro _apply_bed_surface_offset": null, "gcode_macro _init_surfaces": null, "gcode_macro adjust_surface_offsets": null, "gcode_macro set_surface_offset": null, "gcode_macro set_surface_active": null, "gcode_macro set_gcode_offset": null, "gcode_macro make_surface_mesh": null, "gcode_macro load_surface_mesh": null, "gcode_macro m300": null, "gcode_macro set_draw_params": null, "gcode_macro draw_line_to": null, "gcode_macro draw_purge_line": null, "gcode_macro _check_fan_params": null, "gcode_macro set_fan_scaling": null, "gcode_macro reset_fan_scaling": null, "gcode_macro m106": null, "gcode_macro _load_unload": null, "gcode_macro LOAD_FILAMENT": null, "gcode_macro UNLOAD_FILAMENT": null, "gcode_macro _pause_inner_m700": null, "gcode_macro m701": null, "gcode_macro m702": null, "gcode_macro _km_globals": null, "gcode_macro check_km_config": null, "gcode_macro kmvars": null, "gcode_macro check_macro_docs": null, "gcode_macro listvars": null, "gcode_macro list_macros": null, "gcode_macro _list_macros_display": null, "gcode_macro set_heater_temperature_scaled": null, "gcode_macro temperature_wait_scaled": null, "gcode_macro _gcode_wait_wrapper_inner": null, "gcode_macro _gcode_wait_wrapper": null, "gcode_macro m109": null, "gcode_macro m190": null, "gcode_macro m191": null, "gcode_macro m104": null, "gcode_macro m140": null, "gcode_macro m141": null, "gcode_macro _check_heater_params": null, "gcode_macro set_heater_scaling": null, "gcode_macro reset_heater_scaling": null, "gcode_macro _km_idle_timeout": null, "gcode_macro _check_kinematic_limits": null, "gcode_macro lazy_home": null, "gcode_macro _lazy_home_inner": null, "gcode_macro g28": null, "gcode_macro before_layer_change": null, "gcode_macro after_layer_change": null, "gcode_macro gcode_at_layer": null, "gcode_macro _km_layer_run": null, "gcode_macro init_layer_gcode": null, "gcode_macro _reset_layer_gcode": null, "gcode_macro cancel_all_layer_gcode": null, "gcode_macro _update_layer_compat": null, "gcode_macro pause_next_layer": null, "gcode_macro pause_at_layer": null, "gcode_macro speed_at_layer": null, "gcode_macro flow_at_layer": null, "gcode_macro fan_at_layer": null, "gcode_macro heater_at_layer": null, "gcode_macro park": null, "gcode_macro _park_inner": null, "gcode_macro g27": null, "gcode_macro pause": null, "gcode_macro m600": null, "gcode_macro m601": null, "gcode_macro m602": null, "gcode_macro m24": null, "gcode_macro m25": null, "gcode_macro resume": null, "gcode_macro clear_pause": null, "gcode_macro print_start": null, "gcode_macro _print_start_phase_init": null, "gcode_macro _print_start_phase_preheat": null, "gcode_macro _print_start_phase_probing": null, "gcode_macro _print_start_phase_extruder": null, "gcode_macro _print_start_phase_purge": null, "gcode_macro _km_park_if_needed": null, "gcode_macro _km_apply_print_offset": null, "gcode_macro _km_mesh_if_needed": null, "gcode_macro print_start_set": null, "gcode_macro _print_start_phase_check": null, "gcode_macro print_end": null, "gcode_macro _print_end_inner": null, "gcode_macro _km_check_is_printing": null, "gcode_macro _km_check_and_set_print_bounds": null, "gcode_macro _km_save_state": null, "gcode_macro save_gcode_state": null, "gcode_macro restore_gcode_state": null, "gcode_macro _abort_on_gcode_state": null, "gcode_macro _km_print_status": null, "gcode_macro gcode_on_print_status": null, "gcode_macro m201": null, "gcode_macro m203": null, "gcode_macro m205": null, "gcode_macro m900": null, "gcode_macro _reset_velocity_limits": null, "gcode_macro bed_mesh_calibrate": null, "gcode_macro g29": null, "idle_timeout": null, "save_variables": null, "stepper_enable": null, "motion_report": null, "query_endstops": null, "system_stats": null, "manual_probe": null, "toolhead": null, "extruder": null}, "response_template": {"method": "process_status_update"}}}'
+Received 171160.105938: b'{"id": 3908443944, "method": "objects/query", "params": {"objects": {"extruder": ["can_extrude"]}}}'
+Received 171300.502981: b'{"id": 3908442000, "method": "info", "params": {}}'
+Received 171301.581953: b'{"id": 3908442840, "method": "gcode/script", "params": {"script": "SDCARD_PRINT_FILE FILENAME=\\"CE3S1PRO_Garmin Female to GoPro 3(1).gcode\\""}}'
+gcode state: absolute_coord=False absolute_extrude=True base_position=[0.0, 0.0, -0.035, 13019.62147000001] last_position=[0.0, 235.0, 55.975, 13014.62147000001] homing_position=[0.0, 0.0, -0.035, 0.0] speed_factor=0.016666666666666666 extrude_factor=1.0 speed=60.0
+Reactor garbage collection: (177884.588334676, 175127.234045486, 0.0)
